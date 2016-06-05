@@ -58,9 +58,8 @@ namespace Piñata.Data
             ConnectionString = connectionString;
             ProviderName = providerName;
 
-            Connection = CreateDbConnection(connectionString, providerName);
-
-            OpenConnection(Connection);
+            //Connection = CreateDbConnection(connectionString, providerName);
+            //OpenConnection(Connection);
         }
 
         public BaseMySQLRepository(IDbConnection connection)
@@ -104,9 +103,9 @@ namespace Piñata.Data
             Transaction = Connection.BeginTransaction();
         }
 
-        public void BeginTransaction(IDbConnection connection)
+        public IDbTransaction BeginTransaction(IDbConnection connection)
         {
-            Transaction = connection.BeginTransaction();
+            return connection.BeginTransaction();
         }
 
         public void Commit()
@@ -114,9 +113,19 @@ namespace Piñata.Data
             Transaction.Commit();
         }
 
+        public void Commit(IDbTransaction transaction)
+        {
+            transaction.Commit();
+        }
+
         public void Rollback()
         {
             Transaction.Rollback();
+        }
+
+        public void Rollback(IDbTransaction transaction)
+        {
+            transaction.Rollback();
         }
 
         public void Close(IDbConnection connection)
@@ -129,7 +138,7 @@ namespace Piñata.Data
 
         public void Dispose()
         {
-            if (Connection.State != ConnectionState.Closed)
+            if (Connection != null && Connection.State != ConnectionState.Closed)
             {
                 Connection.Close();
             }

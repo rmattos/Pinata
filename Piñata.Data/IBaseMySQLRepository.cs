@@ -12,11 +12,15 @@ namespace Piñata.Data
 
         void BeginTransaction();
 
-        void BeginTransaction(IDbConnection connection);
+        IDbTransaction BeginTransaction(IDbConnection connection);
 
         void Commit();
 
+        void Commit(IDbTransaction transaction);
+
         void Rollback();
+
+        void Rollback(IDbTransaction transaction);
 
         IDbConnection GetConnection();
 
