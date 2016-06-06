@@ -64,7 +64,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Piñata.Core\Pinata.Core.csproj">
+    <ProjectReference Include="..\Pinata.Core\Pinata.Core.csproj">
       <Project>{62880475-7626-4d8b-94f7-5e48ee26d05e}</Project>
       <Name>Pinata.Core</Name>
     </ProjectReference>
