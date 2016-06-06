@@ -75,11 +75,34 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PinataTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Sample\data.json" />
+    <None Include="Sample\data2.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Sample\data.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Piñata.Core\Pinata.Core.csproj">
+      <Project>{62880475-7626-4d8b-94f7-5e48ee26d05e}</Project>
+      <Name>Pinata.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Piñata.Data\Pinata.Data.csproj">
+      <Project>{811997da-bdf9-4762-9b69-4ed709c0be69}</Project>
+      <Name>Pinata.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Piñata\Pinata.csproj">
+      <Project>{f911671c-b729-47f5-b190-ad635dc86ea2}</Project>
+      <Name>Pinata</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

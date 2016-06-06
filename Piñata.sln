@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Piñata.Core", "Piñata.Core\Piñata.Core.csproj", "{62880475-7626-4D8B-94F7-5E48EE26D05E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinata.Core", "Piñata.Core\Pinata.Core.csproj", "{62880475-7626-4D8B-94F7-5E48EE26D05E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{1515FC1A-5F5B-4523-8744-77E417C65D16}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Piñata.UnitTest", "Piñata.UnitTest\Piñata.UnitTest.csproj", "{F9AB45A4-B8D0-46B4-BE75-0DFD45F3B75F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Piñata", "Piñata\Piñata.csproj", "{F911671C-B729-47F5-B190-AD635DC86EA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinata", "Piñata\Pinata.csproj", "{F911671C-B729-47F5-B190-AD635DC86EA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Piñata.Data", "Piñata.Data\Piñata.Data.csproj", "{811997DA-BDF9-4762-9B69-4ED709C0BE69}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinata.Data", "Piñata.Data\Pinata.Data.csproj", "{811997DA-BDF9-4762-9B69-4ED709C0BE69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

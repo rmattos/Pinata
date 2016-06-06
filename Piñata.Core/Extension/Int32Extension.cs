@@ -1,4 +1,4 @@
-﻿namespace Piñata
+﻿namespace Pinata
 {
     public static class Int32Extension
     {

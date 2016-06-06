@@ -7,8 +7,8 @@
     <ProjectGuid>{811997DA-BDF9-4762-9B69-4ED709C0BE69}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Piñata.Data</RootNamespace>
-    <AssemblyName>Piñata.Data</AssemblyName>
+    <RootNamespace>Pinata.Data</RootNamespace>
+    <AssemblyName>Pinata.Data</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -62,9 +62,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Piñata.Core\Piñata.Core.csproj">
+    <ProjectReference Include="..\Piñata.Core\Pinata.Core.csproj">
       <Project>{62880475-7626-4d8b-94f7-5e48ee26d05e}</Project>
-      <Name>Piñata.Core</Name>
+      <Name>Pinata.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

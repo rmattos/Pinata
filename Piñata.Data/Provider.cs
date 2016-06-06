@@ -1,5 +1,5 @@
 ﻿
-namespace Piñata.Data
+namespace Pinata.Data
 {
     public static class Provider
     {
@@ -11,7 +11,7 @@ namespace Piñata.Data
             get { return MSSQLServerClient; }
         }
 
-        public static string MySql
+        public static string MySQL
         {
             get { return MySqlClient; }
         }

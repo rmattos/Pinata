@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Piñata
+namespace Pinata
 {
     public abstract class DisposableResource : IDisposable
     {

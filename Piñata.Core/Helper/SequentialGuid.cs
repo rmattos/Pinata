@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Piñata
+namespace Pinata
 {
     public static class SequentialGuid
     {

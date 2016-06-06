@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Piñata
+namespace Pinata
 {
     public static class SystemTime
     {

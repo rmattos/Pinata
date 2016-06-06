@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace Piñata
+namespace Pinata
 {
     public static class Constants
     {

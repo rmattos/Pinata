@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Piñata
+namespace Pinata
 {
     public static class CollectionExtension
     {

@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace Piñata
+namespace Pinata
 {
     public static class Globalization
     {

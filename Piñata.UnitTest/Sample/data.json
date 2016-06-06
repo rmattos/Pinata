@@ -1,3 +1,102 @@
-﻿{
+﻿[
+    {
 
-}
+        "Table": "Platform_ABTestSummary",
+        "Keys": [ "IdA", "IdB", "StartDate" ],
+        "Schema": [
+            {
+                "Column": "IdA",
+                "Type": "string"
+            },
+            {
+                "Column": "IdB",
+                "Type": "string"
+            },
+            {
+                "Column": "CustomerId",
+                "Type": "guid"
+            },
+            {
+                "Column": "CounterA",
+                "Type": "int"
+            },
+            {
+                "Column": "CounterB",
+                "Type": "int"
+            },
+            {
+                "Column": "StartDate",
+                "Type": "datetime"
+            },
+            {
+                "Column": "EndDate",
+                "Type": "datetime"
+            },
+            {
+                "Column": "TestStatusId",
+                "Type": "byte"
+            },
+            {
+                "Column": "ChannelTypeId",
+                "Type": "int"
+            },
+            {
+                "Column": "ConversionA",
+                "Type": "decimal"
+            },
+            {
+                "Column": "ConversionB",
+                "Type": "decimal"
+            },
+            {
+                "Column": "WinnerId",
+                "Type": "string"
+            }
+        ],
+        "Rows": [
+            {
+                "IdA": "",
+                "IdB": "",
+                "CustomerId": "",
+                "CounterA": "",
+                "CounterB": "",
+                "StartDate": "",
+                "EndDate": "",
+                "TestStatusId": "",
+                "ChannelTypeId": "",
+                "ConversionA": "",
+                "ConversionB": "",
+                "WinnerId": ""
+            }
+        ],
+        "FK_References": [
+            { "Table": "Platform_ABTestStatus" }
+        ]
+    },
+    {
+        "Table": "Platform_ABTestStatus",
+        "Keys": [ "TestStatusId" ],
+        "Schema": [ ],
+        "Rows": [
+            {
+                "TestStatusId": 1,
+                "Name": "Running"
+            },
+            {
+                "TestStatusId": 2,
+                "Name": "FinishedByResult"
+            },
+            {
+                "TestStatusId": 3,
+                "Name": "FinishedByTime"
+            },
+            {
+                "TestStatusId": 4,
+                "Name": "FinishedByUser"
+            }
+        ],
+        "FK_References": [ ]
+    }
+]
+    
+

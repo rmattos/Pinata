@@ -3,7 +3,7 @@ using System.Data;
 using System.Data.Common;
 using DapperExtensions;
 
-namespace Piñata.Data
+namespace Pinata.Data
 {
     public class BaseMySQLRepository<T> : IBaseMySQLRepository<T>, IDisposable where T : class
     {

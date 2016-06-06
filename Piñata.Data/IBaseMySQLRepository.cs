@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace Piñata.Data
+namespace Pinata.Data
 {
     public interface IBaseMySQLRepository<T> where T : class
     {
