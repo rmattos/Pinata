@@ -10,7 +10,7 @@ namespace Pinata.Core
 
         public IList<Schema> Schema { get; set; }
 
-        public IList<object> Rows { get; set; }
+        public IList<Rows> Rows { get; set; }
 
         public IList<References> FK_References { get; set; }
     }
@@ -25,5 +25,12 @@ namespace Pinata.Core
         public string Column { get; set; }
 
         public string Type { get; set; }
+    }
+
+    public class Rows
+    {
+        public string Key { get; set; }
+
+        public object Value { get; set; }
     }
 }
