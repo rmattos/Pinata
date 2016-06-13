@@ -52,13 +52,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasePinata.cs" />
+    <Compile Include="Command\CommandFactory.cs" />
+    <Compile Include="Command\CommandSQL.cs" />
+    <Compile Include="Command\CommandType.cs" />
+    <Compile Include="Command\ICommand.cs" />
+    <Compile Include="Options.cs" />
     <Compile Include="Pinata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Pinata.Core\Pinata.Core.csproj">
+    <ProjectReference Include="..\Pinata.Core\Pinata.Common.csproj">
       <Project>{62880475-7626-4d8b-94f7-5e48ee26d05e}</Project>
-      <Name>Pinata.Core</Name>
+      <Name>Pinata.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Pinata.Data\Pinata.Data.csproj">
       <Project>{811997da-bdf9-4762-9b69-4ed709c0be69}</Project>

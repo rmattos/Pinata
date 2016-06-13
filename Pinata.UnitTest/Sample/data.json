@@ -1,6 +1,5 @@
 ﻿[
     {
-
         "Table": "Platform_ABTestSummary",
         "Keys": [ "IdA", "IdB", "StartDate" ],
         "Schema": [
@@ -55,48 +54,57 @@
         ],
         "Rows": [
             {
-                "IdA": "",
-                "IdB": "",
-                "CustomerId": "",
-                "CounterA": "",
-                "CounterB": "",
-                "StartDate": "",
+                "IdA": "05930c11e0e24c6d8b2854da30997e0b",
+                "IdB": "1f594d5f270248389477273e576f193b",
+                "CustomerId": "064b7a45-4372-4155-a286-a06a97c7d626",
+                "CounterA": "10",
+                "CounterB": "20",
+                "StartDate": "2016-06-01",
                 "EndDate": "",
-                "TestStatusId": "",
-                "ChannelTypeId": "",
-                "ConversionA": "",
-                "ConversionB": "",
+                "TestStatusId": "1",
+                "ChannelTypeId": "4",
+                "ConversionA": "0,00",
+                "ConversionB": "0,00",
                 "WinnerId": ""
             }
         ],
         "FK_References": [
             { "Table": "Platform_ABTestStatus" }
         ]
-    },
-    {
-        "Table": "Platform_ABTestStatus",
-        "Keys": [ "TestStatusId" ],
-        "Schema": [ ],
-        "Rows": [
-            {
-                "TestStatusId": 1,
-                "Name": "Running"
-            },
-            {
-                "TestStatusId": 2,
-                "Name": "FinishedByResult"
-            },
-            {
-                "TestStatusId": 3,
-                "Name": "FinishedByTime"
-            },
-            {
-                "TestStatusId": 4,
-                "Name": "FinishedByUser"
-            }
-        ],
-        "FK_References": [ ]
     }
+    //{
+    //    "Table": "Platform_ABTestStatus",
+    //    "Keys": [ "TestStatusId" ],
+    //    "Schema": [
+    //        {
+    //            "Column": "TestStatusId",
+    //            "Type": "int"
+    //        },
+    //        {
+    //            "Column": "Name",
+    //            "Type": "string"
+    //        }
+    //    ],
+    //    "Rows": [
+    //        {
+    //            "TestStatusId": "1",
+    //            "Name": "Running"
+    //        },
+    //        {
+    //            "TestStatusId": "2",
+    //            "Name": "FinishedByResult"
+    //        },
+    //        {
+    //            "TestStatusId": "3",
+    //            "Name": "FinishedByTime"
+    //        },
+    //        {
+    //            "TestStatusId": "4",
+    //            "Name": "FinishedByUser"
+    //        }
+    //    ],
+    //    "FK_References": [ ]
+    //}
 ]
     
 

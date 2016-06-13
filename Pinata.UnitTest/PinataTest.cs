@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Configuration;
 using FluentAssertions;
-using Pinata.Core;
+using Pinata.Command;
 using Pinata.Data;
 using Xunit;
 
@@ -12,15 +12,16 @@ namespace Piñata.UnitTest
 
         public PinataTest()
         {
-            _sutPinata = new Pinata.Pinata("", Provider.MySQL, "Sample/data.json");
+            _sutPinata = new Pinata.Pinata(ConfigurationManager.ConnectionStrings["soclminer_db_write"].ToString(), Provider.Type.MySQL, "Sample/data.json");
         }
 
         public class Load : PinataTest
         {
             [Fact]
-            public void Given_a_Valid_Sample_Path_Should_Return_A_List_Of_Sample_Data()
+            public void Given_A_Insert_When_Execute_Command_Should_Return_True()
             {
-                _sutPinata.Load().Should().BeOfType<List<SampleData>>();
+                _sutPinata.Feed();
+                _sutPinata.Execute(CommandType.Insert).Should().BeTrue();
             }
         }
     }

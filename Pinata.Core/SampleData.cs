@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Pinata.Core
+namespace Pinata.Common
 {
     public class SampleData
     {

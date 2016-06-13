@@ -54,19 +54,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseMySQLRepository.cs" />
-    <Compile Include="IBaseMySQLRepository.cs" />
+    <Compile Include="BaseSQLRepository.cs" />
+    <Compile Include="IBaseSQLRepository.cs" />
+    <Compile Include="IPinataRepository.cs" />
+    <Compile Include="MySQL\PinataRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider.cs" />
+    <Compile Include="RepositoryFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Pinata.Core\Pinata.Core.csproj">
+    <ProjectReference Include="..\Pinata.Core\Pinata.Common.csproj">
       <Project>{62880475-7626-4d8b-94f7-5e48ee26d05e}</Project>
-      <Name>Pinata.Core</Name>
+      <Name>Pinata.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

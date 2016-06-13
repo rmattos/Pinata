@@ -1,19 +1,46 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using Jil;
-using Pinata.Core;
+using Pinata.Command;
+using Pinata.Common;
+using Pinata.Data;
 
 namespace Pinata
 {
     public class Pinata : BasePinata
     {
-        public Pinata(string connectionString, string provider, params string[] samplePath) :
+        private ICommand _command = null;
+
+        public Pinata(string connectionString, Provider.Type provider, params string[] samplePath) :
             base(connectionString, provider, samplePath)
         {
+            _command = CommandFactory.Create(provider);
         }
 
-        public override IList<SampleData> Load()
+        public override bool Execute(CommandType commandType)
         {
+            bool commandResposne = false;
+
+            switch (commandType)
+            {
+                case CommandType.Insert:
+                    {
+                        commandResposne = Repository.InsertData(_command.CreateInsert(base.sampleData));
+                        break;
+                    }
+                case CommandType.Update:
+                    break;
+                case CommandType.Delete:
+                    break;
+            }
+
+            return commandResposne;
+        }
+
+        public override void Feed(Options option = Options.None)
+        {
+            OptionType = option;
+
             List<SampleData> sampleDataList = new List<SampleData>();
 
             foreach (var sample in SamplePath)
@@ -23,7 +50,7 @@ namespace Pinata
                 sampleDataList.AddRange(JSON.Deserialize<IList<SampleData>>(sampleRaw));
             }
 
-            return sampleDataList;
+            base.sampleData = sampleDataList;
         }
     }
 }

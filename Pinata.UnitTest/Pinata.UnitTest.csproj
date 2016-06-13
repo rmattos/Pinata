@@ -90,9 +90,9 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Pinata.Core\Pinata.Core.csproj">
+    <ProjectReference Include="..\Pinata.Core\Pinata.Common.csproj">
       <Project>{62880475-7626-4d8b-94f7-5e48ee26d05e}</Project>
-      <Name>Pinata.Core</Name>
+      <Name>Pinata.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Pinata.Data\Pinata.Data.csproj">
       <Project>{811997da-bdf9-4762-9b69-4ed709c0be69}</Project>

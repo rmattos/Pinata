@@ -15,5 +15,12 @@ namespace Pinata.Data
         {
             get { return MySqlClient; }
         }
+
+        public enum Type
+        {
+            MySQL = 1,
+            SQLServer,
+            MongoDB
+        }
     }
 }
