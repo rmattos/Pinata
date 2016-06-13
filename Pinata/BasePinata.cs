@@ -7,10 +7,16 @@ namespace Pinata
 {
     public abstract class BasePinata
     {
+        protected List<SampleData> sampleData = new List<SampleData>();
+
         protected IPinataRepository Repository { get; set; }
         protected string[] SamplePath { get; set; }
-        protected List<SampleData> sampleData = new List<SampleData>();
         protected Options OptionType { get; set; }
+
+        public BasePinata(string connectionString, Provider.Type provider)
+        {
+            Repository = RepositoryFactory.Create(connectionString, provider);
+        }
 
         public BasePinata(string connectionString, Provider.Type provider, params string[] samplePath)
         {
@@ -18,7 +24,14 @@ namespace Pinata
             Repository = RepositoryFactory.Create(connectionString, provider);
         }
 
+        protected void SetDataFiles(params string[] samplePath)
+        {
+            SamplePath = samplePath;
+        }
+
         public abstract void Feed(Options option = Options.None);
+
+        public abstract void Feed(Options option = Options.None, params string[] samplePath);
 
         public abstract bool Execute(CommandType commandType);
     }

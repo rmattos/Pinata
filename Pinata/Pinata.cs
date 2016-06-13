@@ -11,6 +11,12 @@ namespace Pinata
     {
         private ICommand _command = null;
 
+        public Pinata(string connectionString, Provider.Type provider) :
+            base(connectionString, provider)
+        {
+            _command = CommandFactory.Create(provider);
+        }
+
         public Pinata(string connectionString, Provider.Type provider, params string[] samplePath) :
             base(connectionString, provider, samplePath)
         {
@@ -39,7 +45,17 @@ namespace Pinata
 
         public override void Feed(Options option = Options.None)
         {
+            Feed(option, null);
+        }
+
+        public override void Feed(Options option = Options.None, params string[] samplePath)
+        {
             OptionType = option;
+
+            if (samplePath != null)
+            {
+                SetDataFiles(samplePath);
+            }
 
             List<SampleData> sampleDataList = new List<SampleData>();
 
