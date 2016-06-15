@@ -31,13 +31,16 @@ namespace Pinata
             {
                 case CommandType.Insert:
                     {
-                        commandResposne = Repository.InsertData(_command.CreateInsert(base.sampleData));
+                        commandResposne = Repository.ExecuteCommand(_command.CreateInsert(base.sampleData));
                         break;
                     }
                 case CommandType.Update:
                     break;
                 case CommandType.Delete:
-                    break;
+                    {
+                        commandResposne = Repository.ExecuteCommand(_command.CreateDelete(base.sampleData));
+                        break;
+                    }
             }
 
             return commandResposne;
@@ -52,12 +55,12 @@ namespace Pinata
         {
             OptionType = option;
 
+            List<SampleData> sampleDataList = new List<SampleData>();
+
             if (samplePath != null)
             {
                 SetDataFiles(samplePath);
             }
-
-            List<SampleData> sampleDataList = new List<SampleData>();
 
             foreach (var sample in SamplePath)
             {

@@ -18,7 +18,7 @@ namespace Pinata.Data.MySQL
         {
         }
 
-        public bool InsertData(IList<string> sqlList)
+        public bool ExecuteCommand(IList<string> sqlList)
         {
             try
             {

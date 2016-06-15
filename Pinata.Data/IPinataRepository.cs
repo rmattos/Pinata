@@ -4,6 +4,6 @@ namespace Pinata.Data
 {
     public interface IPinataRepository
     {
-        bool InsertData(IList<string> sqlList);
+        bool ExecuteCommand(IList<string> sqlList);
     }
 }

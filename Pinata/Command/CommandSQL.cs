@@ -1,15 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using Jil;
+using System.Linq;
+using System.Threading.Tasks;
 using Pinata.Common;
 
 namespace Pinata.Command
 {
     public class CommandSQL : ICommand
     {
+        private IDictionary<string, bool> _tablesLoaded = new Dictionary<string, bool>();
+
         public IList<string> CreateDelete(IList<SampleData> list)
         {
-            throw new NotImplementedException();
+            IList<string> deleteList = new List<string>();
+
+            IList<SampleData> childData = list.Where(l => l.FK_References.Count > 0).ToList();
+            IList<SampleData> parentData = list.Where(l => l.FK_References.Count == 0).ToList();
+
+            Parallel.ForEach(childData, sample =>
+            {
+                TSQLProcessor.Execute(new CreateDeleteSQL(), sample, deleteList);
+            });
+
+            Parallel.ForEach(parentData, sample =>
+            {
+                TSQLProcessor.Execute(new CreateDeleteSQL(), sample, deleteList);
+            });
+
+            return deleteList;
         }
 
         public IList<string> CreateInsert(IList<SampleData> list)
@@ -18,27 +36,24 @@ namespace Pinata.Command
 
             foreach (SampleData sample in list)
             {
-                string baseSQL = @"INSERT INTO {0} ({1}) VALUES ({2});";
-                string dataSQL = string.Empty;
-
-                foreach (var row in sample.Rows)
+                foreach (var fk in sample.FK_References)
                 {
-                    string fields = string.Empty;
-                    string values = string.Empty;
+                    SampleData sampleDataFiltered = list.Where(l => !_tablesLoaded.ContainsKey(fk.Table) && l.Table == fk.Table).SingleOrDefault();
 
-                    foreach (var schema in sample.Schema)
+                    if (sampleDataFiltered != null)
                     {
-                        fields += "{0},".FormatWith(schema.Column);
+                        TSQLProcessor.Execute(new CreateInsertSQL(), sampleDataFiltered, insertList);
 
-                        string value = JSON.DeserializeDynamic(row.ToString())[schema.Column];
-
-                        values += "'{0}',".FormatWith(value);
+                        _tablesLoaded.Add(fk.Table, true);
                     }
-
-                    dataSQL += baseSQL.FormatWith(sample.Table, fields.Substring(0, fields.LastIndexOf(',')), values.Substring(0, values.LastIndexOf(',')));
                 }
 
-                insertList.Add(dataSQL);
+                if (!_tablesLoaded.ContainsKey(sample.Table))
+                {
+                    TSQLProcessor.Execute(new CreateInsertSQL(), sample, insertList);
+
+                    _tablesLoaded.Add(sample.Table, true);
+                }
             }
 
             return insertList;

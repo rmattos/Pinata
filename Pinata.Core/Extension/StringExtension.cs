@@ -45,6 +45,14 @@ namespace Pinata
         }
 
         [DebuggerStepThrough]
+        public static string FormatWith(this string target, IFormatProvider formatProvider, params object[] args)
+        {
+            Check.Argument.IsNotEmpty(target, "target");
+
+            return string.Format(formatProvider, target, args);
+        }
+
+        [DebuggerStepThrough]
         public static string Hash(this string target)
         {
             Check.Argument.IsNotEmpty(target, "target");

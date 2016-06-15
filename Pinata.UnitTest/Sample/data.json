@@ -63,48 +63,48 @@
                 "EndDate": "",
                 "TestStatusId": "1",
                 "ChannelTypeId": "4",
-                "ConversionA": "0,00",
-                "ConversionB": "0,00",
+                "ConversionA": "0,50",
+                "ConversionB": "1,00",
                 "WinnerId": ""
             }
         ],
         "FK_References": [
             { "Table": "Platform_ABTestStatus" }
         ]
+    },
+    {
+        "Table": "Platform_ABTestStatus",
+        "Keys": [ "TestStatusId" ],
+        "Schema": [
+            {
+                "Column": "TestStatusId",
+                "Type": "int"
+            },
+            {
+                "Column": "Name",
+                "Type": "string"
+            }
+        ],
+        "Rows": [
+            {
+                "TestStatusId": "1",
+                "Name": "Running"
+            },
+            {
+                "TestStatusId": "2",
+                "Name": "FinishedByResult"
+            },
+            {
+                "TestStatusId": "3",
+                "Name": "FinishedByTime"
+            },
+            {
+                "TestStatusId": "4",
+                "Name": "FinishedByUser"
+            }
+        ],
+        "FK_References": [ ]
     }
-    //{
-    //    "Table": "Platform_ABTestStatus",
-    //    "Keys": [ "TestStatusId" ],
-    //    "Schema": [
-    //        {
-    //            "Column": "TestStatusId",
-    //            "Type": "int"
-    //        },
-    //        {
-    //            "Column": "Name",
-    //            "Type": "string"
-    //        }
-    //    ],
-    //    "Rows": [
-    //        {
-    //            "TestStatusId": "1",
-    //            "Name": "Running"
-    //        },
-    //        {
-    //            "TestStatusId": "2",
-    //            "Name": "FinishedByResult"
-    //        },
-    //        {
-    //            "TestStatusId": "3",
-    //            "Name": "FinishedByTime"
-    //        },
-    //        {
-    //            "TestStatusId": "4",
-    //            "Name": "FinishedByUser"
-    //        }
-    //    ],
-    //    "FK_References": [ ]
-    //}
 ]
     
 

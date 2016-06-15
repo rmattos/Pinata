@@ -55,8 +55,13 @@
     <Compile Include="Command\CommandFactory.cs" />
     <Compile Include="Command\CommandSQL.cs" />
     <Compile Include="Command\CommandType.cs" />
+    <Compile Include="Command\CreateDeleteSQL.cs" />
     <Compile Include="Command\ICommand.cs" />
+    <Compile Include="Command\IGenerateTSQL.cs" />
+    <Compile Include="Command\CreateInsertSQL.cs" />
+    <Compile Include="Command\TSQLProcessor.cs" />
     <Compile Include="Options.cs" />
+    <Compile Include="ParserDataType.cs" />
     <Compile Include="Pinata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
