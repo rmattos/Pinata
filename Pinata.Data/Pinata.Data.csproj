@@ -67,6 +67,7 @@
     <Compile Include="IPinataRepository.cs" />
     <Compile Include="MongoDB\BaseMongoRepository.cs" />
     <Compile Include="MongoDB\IBaseMongoRepository.cs" />
+    <Compile Include="MongoDB\PinataRepository.cs" />
     <Compile Include="MySQL\PinataRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider.cs" />

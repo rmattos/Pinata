@@ -36,6 +36,14 @@
       <HintPath>..\packages\Jil.2.14.3\lib\net45\Jil.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MongoDB.Bson, Version=1.10.0.62, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <HintPath>..\packages\mongocsharpdriver.1.10.0\lib\net35\MongoDB.Bson.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=1.10.0.62, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <HintPath>..\packages\mongocsharpdriver.1.10.0\lib\net35\MongoDB.Driver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Sigil, Version=4.6.1.0, Culture=neutral, PublicKeyToken=2d06c3494341c8ab, processorArchitecture=MSIL">
       <HintPath>..\packages\Sigil.4.6.1\lib\net45\Sigil.dll</HintPath>
       <Private>True</Private>
@@ -53,6 +61,7 @@
   <ItemGroup>
     <Compile Include="BasePinata.cs" />
     <Compile Include="Command\CommandFactory.cs" />
+    <Compile Include="Command\CommandMongo.cs" />
     <Compile Include="Command\CommandSQL.cs" />
     <Compile Include="Command\CommandType.cs" />
     <Compile Include="Command\CreateDeleteSQL.cs" />
@@ -60,6 +69,10 @@
     <Compile Include="Command\IGenerateTSQL.cs" />
     <Compile Include="Command\CreateInsertSQL.cs" />
     <Compile Include="Command\TSQLProcessor.cs" />
+    <Compile Include="DeserializerMongo.cs" />
+    <Compile Include="DeserializerProcessor.cs" />
+    <Compile Include="DeserializerSQL.cs" />
+    <Compile Include="IDeserializer.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="ParserDataType.cs" />
     <Compile Include="Pinata.cs" />

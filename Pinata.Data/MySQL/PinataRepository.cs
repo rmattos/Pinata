@@ -3,11 +3,36 @@ using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 using Dapper;
+using Pinata.Common;
 
 namespace Pinata.Data.MySQL
 {
-    public class PinataRepository : BaseMySQLRepository<Common.SampleData>, IPinataRepository
+    public class PinataRepository : BaseMySQLRepository<BaseSampleData>, IPinataRepository
     {
+        #region [ PRIVATE ]
+
+        private bool ExecuteCommand(IList<object> list)
+        {
+            try
+            {
+                Parallel.ForEach(list, sql =>
+                {
+                    using (IDbConnection connection = GetConnection())
+                    {
+                        connection.Execute(sql.ToString(), null, null, 0, null);
+                    }
+                });
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
         public PinataRepository(string connectionString, string providerName)
             : base(connectionString, providerName)
         {
@@ -18,24 +43,19 @@ namespace Pinata.Data.MySQL
         {
         }
 
-        public bool ExecuteCommand(IList<string> sqlList)
+        public bool Insert(IList<object> list)
         {
-            try
-            {
-                Parallel.ForEach(sqlList, sql =>
-                {
-                    using (IDbConnection connection = GetConnection())
-                    {
-                        connection.Execute(sql, null, null, 0, null);
-                    }
-                });
+            return ExecuteCommand(list);
+        }
 
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+        public bool Update(IList<object> list)
+        {
+            return ExecuteCommand(list);
+        }
+
+        public bool Delete(IList<object> list)
+        {
+            return ExecuteCommand(list);
         }
     }
 }

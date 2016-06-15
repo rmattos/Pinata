@@ -1,0 +1,28 @@
+﻿[
+    {
+        "Collection": "User",
+        "Keys": [ "_id" ],
+        "Schema": [
+            {
+                "Column": "_id",
+                "Type": "guid"
+            },
+            {
+                "Column": "Email",
+                "Type": "string"
+            }
+        ],
+        "Rows": [
+            {
+                "_id": "012d8fe0-1316-4807-8d96-3ca32d9cddac",
+                "Email": "teste@soclminer.com.br"
+            },
+            {
+                "_id": "012d9efb-29c5-4642-85ac-fa51b3d50d74",
+                "Email": "teste2@soclminer.com.br"
+            }
+        ]
+    }
+]
+    
+

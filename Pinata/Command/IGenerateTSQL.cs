@@ -5,6 +5,6 @@ namespace Pinata.Command
 {
     public interface IGenerateTSQL
     {
-        void CreateTSQL(SampleData sample, IList<string> sqlList);
+        void CreateTSQL(SampleSQLData sample, IList<object> sqlList);
     }
 }

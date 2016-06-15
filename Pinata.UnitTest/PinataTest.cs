@@ -12,7 +12,7 @@ namespace Piñata.UnitTest
 
         public PinataTest()
         {
-            _sutPinata = new Pinata.Pinata(ConfigurationManager.ConnectionStrings["soclminer_db_write"].ToString(), Provider.Type.MySQL, "Sample/data.json");
+            _sutPinata = new Pinata.Pinata(ConfigurationManager.ConnectionStrings["soclminer_db_write"].ToString(), Provider.Type.MySQL, "Sample/sqlData.json");
         }
 
         public class Load : PinataTest

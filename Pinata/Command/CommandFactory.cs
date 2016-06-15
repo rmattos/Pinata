@@ -1,5 +1,4 @@
-﻿using System;
-using Pinata.Data;
+﻿using Pinata.Data;
 
 namespace Pinata.Command
 {
@@ -23,10 +22,9 @@ namespace Pinata.Command
                     }
                 case Provider.Type.MongoDB:
                     {
+                        command = new CommandMongo();
                         break;
                     }
-                default:
-                    throw new NullReferenceException("Invalid Provider");
             }
 
             return command;

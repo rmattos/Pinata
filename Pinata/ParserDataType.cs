@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Globalization;
+using MongoDB.Bson;
 
 namespace Pinata
 {
     public class ParserDataType
     {
-        public static string Parse(DataType type, string value)
+        public static string ParseSQL(DataType type, string value)
         {
             if (string.IsNullOrEmpty(value))
             {
@@ -59,6 +60,77 @@ namespace Pinata
             return parsedValue;
         }
 
+        public static BsonValue ParseMongo(DataType type, string value)
+        {
+            BsonValue parsedValue = string.Empty;
+
+            switch (type)
+            {
+                case DataType.Int:
+                    {
+                        parsedValue = BsonValue.Create(value).AsInt32;
+                        break;
+                    }
+                case DataType.Long:
+                    {
+                        parsedValue = BsonValue.Create(value).AsInt64;
+                        break;
+                    }
+                case DataType.Short:
+                case DataType.Byte:
+                    {
+                        parsedValue = BsonValue.Create(value);
+                        break;
+                    }
+                case DataType.Bool:
+                    {
+                        parsedValue = BsonValue.Create(value).AsBoolean;
+                        break;
+                    }
+                case DataType.String:
+                case DataType.Char:
+                    {
+                        parsedValue = BsonValue.Create(value).AsString;
+                        break;
+                    }
+                case DataType.Guid:
+                    {
+                        parsedValue = BsonValue.Create(value).AsGuid;
+                        break;
+                    }
+                case DataType.Double:
+                    {
+                        parsedValue = BsonValue.Create(value).AsDouble;
+                        break;
+                    }
+                case DataType.Decimal:
+                case DataType.Float:
+                    {
+                        parsedValue = BsonValue.Create(value);
+                        break;
+                    }
+                case DataType.DateTime:
+                    {
+                        parsedValue = BsonValue.Create(value).ToUniversalTime();
+                        break;
+                    }
+                case DataType.Array:
+                    {
+                        parsedValue = BsonValue.Create(value).AsBsonArray;
+                        break;
+                    }
+                case DataType.Document:
+                    {
+                        parsedValue = BsonValue.Create(value).AsBsonDocument;
+                        break;
+                    }
+                default:
+                    throw new ArgumentException("Invalid Data Type");
+            }
+
+            return parsedValue;
+        }
+
         public enum DataType
         {
             Int = 1,
@@ -72,7 +144,9 @@ namespace Pinata
             Double,
             Decimal,
             Float,
-            DateTime
+            DateTime,
+            Array,
+            Document
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Pinata.Command
 {
     public class TSQLProcessor
     {
-        public static void Execute(IGenerateTSQL sqlCommand, SampleData sample, IList<string> sqlList)
+        public static void Execute(IGenerateTSQL sqlCommand, SampleSQLData sample, IList<object> sqlList)
         {
             sqlCommand.CreateTSQL(sample, sqlList);
         }

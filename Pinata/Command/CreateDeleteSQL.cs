@@ -7,7 +7,7 @@ namespace Pinata.Command
 {
     public class CreateDeleteSQL : IGenerateTSQL
     {
-        public void CreateTSQL(SampleData sample, IList<string> sqlList)
+        public void CreateTSQL(SampleSQLData sample, IList<object> sqlList)
         {
             string baseSQL = @"DELETE FROM {0} WHERE {1};";
             string dataSQL = string.Empty;
@@ -22,7 +22,7 @@ namespace Pinata.Command
                     {
                         string value = JSON.DeserializeDynamic(row.ToString())[schema.Column];
 
-                        string parsedValue = "{0}".FormatWith(ParserDataType.Parse((ParserDataType.DataType)Enum.Parse(typeof(ParserDataType.DataType), schema.Type, true), value));
+                        string parsedValue = "{0}".FormatWith(ParserDataType.ParseSQL((ParserDataType.DataType)Enum.Parse(typeof(ParserDataType.DataType), schema.Type, true), value));
 
                         fields += "{0}={1},".FormatWith(schema.Column, parsedValue);
                     }

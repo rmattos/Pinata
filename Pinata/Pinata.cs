@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using Jil;
-using Pinata.Command;
-using Pinata.Common;
+﻿using Pinata.Command;
 using Pinata.Data;
 
 namespace Pinata
@@ -31,14 +27,14 @@ namespace Pinata
             {
                 case CommandType.Insert:
                     {
-                        commandResposne = Repository.ExecuteCommand(_command.CreateInsert(base.sampleData));
+                        commandResposne = Repository.Insert(_command.CreateInsert(base.sampleData));
                         break;
                     }
                 case CommandType.Update:
                     break;
                 case CommandType.Delete:
                     {
-                        commandResposne = Repository.ExecuteCommand(_command.CreateDelete(base.sampleData));
+                        commandResposne = Repository.Delete(_command.CreateDelete(base.sampleData));
                         break;
                     }
             }
@@ -55,8 +51,6 @@ namespace Pinata
         {
             OptionType = option;
 
-            List<SampleData> sampleDataList = new List<SampleData>();
-
             if (samplePath != null)
             {
                 SetDataFiles(samplePath);
@@ -64,12 +58,22 @@ namespace Pinata
 
             foreach (var sample in SamplePath)
             {
-                string sampleRaw = File.ReadAllText(Path.GetFullPath(sample));
-
-                sampleDataList.AddRange(JSON.Deserialize<IList<SampleData>>(sampleRaw));
+                switch (Provider)
+                {
+                    case Data.Provider.Type.MySQL:
+                        {
+                            base.sampleData.AddRange(DeserializerProcessor.Execute(new DeserializerSQL(), sample));
+                            break;
+                        }
+                    case Data.Provider.Type.SQLServer:
+                        break;
+                    case Data.Provider.Type.MongoDB:
+                        {
+                            base.sampleData.AddRange(DeserializerProcessor.Execute(new DeserializerMongo(), sample));
+                            break;
+                        }
+                }
             }
-
-            base.sampleData = sampleDataList;
         }
     }
 }

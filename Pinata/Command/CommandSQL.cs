@@ -10,12 +10,13 @@ namespace Pinata.Command
     {
         private IDictionary<string, bool> _tablesLoaded = new Dictionary<string, bool>();
 
-        public IList<string> CreateDelete(IList<SampleData> list)
+        public IList<object> CreateDelete(IList<object> list)
         {
-            IList<string> deleteList = new List<string>();
+            IList<SampleSQLData> convertedList = list.Cast<SampleSQLData>().ToList();
+            IList<object> deleteList = new List<object>();
 
-            IList<SampleData> childData = list.Where(l => l.FK_References.Count > 0).ToList();
-            IList<SampleData> parentData = list.Where(l => l.FK_References.Count == 0).ToList();
+            IList<SampleSQLData> childData = convertedList.Where(l => l.FK_References.Count > 0).ToList();
+            IList<SampleSQLData> parentData = convertedList.Where(l => l.FK_References.Count == 0).ToList();
 
             Parallel.ForEach(childData, sample =>
             {
@@ -30,15 +31,16 @@ namespace Pinata.Command
             return deleteList;
         }
 
-        public IList<string> CreateInsert(IList<SampleData> list)
+        public IList<object> CreateInsert(IList<object> list)
         {
-            IList<string> insertList = new List<string>();
+            IList<SampleSQLData> convertedList = list.Cast<SampleSQLData>().ToList();
+            IList<object> insertList = new List<object>();
 
-            foreach (SampleData sample in list)
+            foreach (SampleSQLData sample in convertedList)
             {
                 foreach (var fk in sample.FK_References)
                 {
-                    SampleData sampleDataFiltered = list.Where(l => !_tablesLoaded.ContainsKey(fk.Table) && l.Table == fk.Table).SingleOrDefault();
+                    SampleSQLData sampleDataFiltered = convertedList.Where(l => !_tablesLoaded.ContainsKey(fk.Table) && l.Table == fk.Table).SingleOrDefault();
 
                     if (sampleDataFiltered != null)
                     {
@@ -59,7 +61,7 @@ namespace Pinata.Command
             return insertList;
         }
 
-        public IList<string> CreateUpdate(IList<SampleData> list)
+        public IList<object> CreateUpdate(IList<object> list)
         {
             throw new NotImplementedException();
         }

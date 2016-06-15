@@ -52,7 +52,7 @@ namespace Pinata.Data.MongoDB
 
         #region [ PROTECTED ]
 
-        protected abstract string CollectionName { get; }
+        protected virtual string CollectionName { get; set; }
 
         protected virtual MongoCollection GetCollection(string collectionName)
         {
@@ -137,6 +137,11 @@ namespace Pinata.Data.MongoDB
         public virtual bool Create(T document)
         {
             return GetCollection(CollectionName).Save(document, new MongoInsertOptions { WriteConcern = WriteConcern.Acknowledged }).Ok;
+        }
+
+        public virtual void CreateBatch(IList<T> listDocument)
+        {
+            GetCollection(CollectionName).InsertBatch(listDocument, new MongoInsertOptions { WriteConcern = WriteConcern.Acknowledged });
         }
 
         public virtual bool Delete(Guid id)

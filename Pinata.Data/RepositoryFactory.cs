@@ -1,4 +1,4 @@
-﻿using System;
+﻿using MongoDB.Driver;
 
 namespace Pinata.Data
 {
@@ -16,15 +16,12 @@ namespace Pinata.Data
                         break;
                     }
                 case Provider.Type.SQLServer:
-                    {
-                        break;
-                    }
+                    break;
                 case Provider.Type.MongoDB:
                     {
+                        repository = new MongoDB.PinataRepository(new MongoUrl(connectionString));
                         break;
                     }
-                default:
-                    throw new ArgumentException("Invalid Provider");
             }
 
             return repository;

@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseSampleData.cs" />
     <Compile Include="Extension\CollectionExtension.cs" />
     <Compile Include="Extension\DateTimeExtension.cs" />
     <Compile Include="Extension\EnumerableExtension.cs" />
@@ -55,7 +56,8 @@
     <Compile Include="Helper\SequentialGuid.cs" />
     <Compile Include="Helper\SystemTime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SampleData.cs" />
+    <Compile Include="SampleMongoData.cs" />
+    <Compile Include="SampleSQLData.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
