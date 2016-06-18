@@ -18,6 +18,9 @@ namespace Pinata.Command
 
             foreach (var sample in convertedList)
             {
+                IDictionary<string, IList<BsonElement>> data = new Dictionary<string, IList<BsonElement>>();
+                IList<BsonElement> elementList = new List<BsonElement>();
+
                 foreach (var row in sample.Rows)
                 {
                     foreach (var schema in sample.Schema)
@@ -26,10 +29,14 @@ namespace Pinata.Command
                         {
                             string value = JSON.DeserializeDynamic(row.ToString())[schema.Column];
 
-                            deleteList.Add(new BsonElement(schema.Column, ParserDataType.ParseMongo((ParserDataType.DataType)Enum.Parse(typeof(ParserDataType.DataType), schema.Type, true), value)));
+                            elementList.Add(new BsonElement(schema.Column, ParserDataType.ParseMongo((ParserDataType.DataType)Enum.Parse(typeof(ParserDataType.DataType), schema.Type, true), value)));
                         }
                     }
                 }
+
+                data.Add(sample.Collection, elementList);
+
+                deleteList.Add(data);
             }
 
             return deleteList;

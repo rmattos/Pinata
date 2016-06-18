@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -17,16 +18,16 @@ namespace Pinata.Data.MongoDB
 
         #endregion
 
-        public bool Insert(IList<object> docList)
+        public bool Insert(IList<object> list)
         {
             try
             {
-                foreach (var item in docList)
+                foreach (var item in list)
                 {
                     var data = ((IDictionary<string, IList<BsonDocument>>)item).First();
 
-                    base.CollectionName = data.Key;
-                    base.CreateBatch(data.Value);
+                    CollectionName = data.Key;
+                    CreateBatch(data.Value);
                 }
             }
             catch (Exception)
@@ -46,7 +47,19 @@ namespace Pinata.Data.MongoDB
         {
             try
             {
+                foreach (var element in list)
+                {
+                    var data = ((IDictionary<string, IList<BsonElement>>)element).First();
 
+                    CollectionName = data.Key;
+
+                    Parallel.ForEach(data.Value, item =>
+                    {
+                        IMongoQuery query = CreateQuery("{'" + item.Name + "': @value }", new { value = item.Value });
+
+                        Delete(query);
+                    });
+                }
             }
             catch (Exception)
             {
