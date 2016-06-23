@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Pinata.Common;
 
 namespace Pinata.Command
@@ -18,15 +17,15 @@ namespace Pinata.Command
             IList<SampleSQLData> childData = convertedList.Where(l => l.FK_References.Count > 0).ToList();
             IList<SampleSQLData> parentData = convertedList.Where(l => l.FK_References.Count == 0).ToList();
 
-            Parallel.ForEach(childData, sample =>
+            foreach (var child in childData)
             {
-                TSQLProcessor.Execute(new CreateDeleteSQL(), sample, deleteList);
-            });
+                TSQLProcessor.Execute(new CreateDeleteSQL(), child, deleteList);
+            }
 
-            Parallel.ForEach(parentData, sample =>
+            foreach (var parent in parentData)
             {
-                TSQLProcessor.Execute(new CreateDeleteSQL(), sample, deleteList);
-            });
+                TSQLProcessor.Execute(new CreateDeleteSQL(), parent, deleteList);
+            }
 
             return deleteList;
         }

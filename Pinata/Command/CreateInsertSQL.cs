@@ -29,7 +29,10 @@ namespace Pinata.Command
                 dataSQL += baseSQL.FormatWith(sample.Table, fields.Substring(0, fields.LastIndexOf(',')), values.Substring(0, values.LastIndexOf(',')));
             }
 
-            sqlList.Add(dataSQL);
+            if (!string.IsNullOrEmpty(dataSQL))
+            {
+                sqlList.Add(dataSQL);
+            }
         }
     }
 }

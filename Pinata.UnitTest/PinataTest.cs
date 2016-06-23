@@ -13,16 +13,29 @@ namespace Piñata.UnitTest
         public PinataTest()
         {
             _sutPinata = new Pinata.Pinata(ConfigurationManager.ConnectionStrings["soclminer_db_write"].ToString(), Provider.Type.MySQL, "Sample/sqlData.json");
+            _sutPinata.Feed();
+            _sutPinata.Execute(CommandType.Delete);
         }
 
-        public class Load : PinataTest
+        public class Execute : PinataTest
         {
-            [Fact]
-            public void Given_A_Insert_When_Execute_Command_Should_Return_True()
+            public class Given_A_Insert_Command : IClassFixture<Execute>
             {
-                _sutPinata.Feed();
-                _sutPinata.Execute(CommandType.Insert).Should().BeTrue();
+                private Pinata.Pinata _sutPinata = null;
+
+                public Given_A_Insert_Command(Execute fixture)
+                {
+                    _sutPinata = fixture._sutPinata;
+                }
+
+                [Fact]
+                public void When_Execute_Should_Return_True()
+                {
+                    _sutPinata.Feed();
+                    _sutPinata.Execute(CommandType.Insert).Should().BeTrue();
+                }
             }
+
         }
     }
 }

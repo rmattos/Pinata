@@ -1,83 +1,121 @@
 ﻿[
     {
-        "Table": "Platform_ABTestSummary",
-        "Keys": [ "IdA", "IdB", "StartDate" ],
+        "Table": "TestPinata_Movie",
+        "Keys": [ "Id" ],
+        "Relationship": "OneToMany",
         "Schema": [
             {
-                "Column": "IdA",
-                "Type": "string"
-            },
-            {
-                "Column": "IdB",
-                "Type": "string"
-            },
-            {
-                "Column": "CustomerId",
+                "Column": "Id",
                 "Type": "guid"
             },
             {
-                "Column": "CounterA",
+                "Column": "Name",
+                "Type": "string"
+            },
+            {
+                "Column": "CategoryId",
                 "Type": "int"
+            }
+        ],
+        "Rows": [
+            {
+                "Id": "adef64eb-38e4-11e6-8aa3-0003ff500b9d",
+                "Name": "Capitan America - Civil War",
+                "CategoryId": "1"
             },
             {
-                "Column": "CounterB",
-                "Type": "int"
+                "Id": "b6210be7-38e4-11e6-8aa3-0003ff500b9d",
+                "Name": "Avangers",
+                "CategoryId": "4"
             },
             {
-                "Column": "StartDate",
-                "Type": "datetime"
+                "Id": "ddbb311a-38e4-11e6-8aa3-0003ff500b9d",
+                "Name": "Deadpool",
+                "CategoryId": "1"
+            }
+        ],
+        "FK_References": [
+            { "Table": "TestPinata_Category" }
+        ]
+    },
+    {
+        "Table": "TestPinata_MovieActor",
+        "Keys": [ "MovieId", "ActorId" ],
+        "Relationship": "ManyToMany",
+        "Schema": [
+            {
+                "Column": "MovieId",
+                "Type": "guid"
             },
             {
-                "Column": "EndDate",
-                "Type": "datetime"
+                "Column": "ActorId",
+                "Type": "guid"
+            }
+        ],
+        "Rows": [
+            {
+                "MovieId": "adef64eb-38e4-11e6-8aa3-0003ff500b9d",
+                "ActorId": "b3e6447b-38e3-11e6-8aa3-0003ff500b9d"
             },
             {
-                "Column": "TestStatusId",
-                "Type": "byte"
+                "MovieId": "adef64eb-38e4-11e6-8aa3-0003ff500b9d",
+                "ActorId": "dee91372-38e3-11e6-8aa3-0003ff500b9d"
             },
             {
-                "Column": "ChannelTypeId",
-                "Type": "int"
+                "MovieId": "adef64eb-38e4-11e6-8aa3-0003ff500b9d",
+                "ActorId": "e4b94626-38e3-11e6-8aa3-0003ff500b9d"
             },
             {
-                "Column": "ConversionA",
-                "Type": "decimal"
+                "MovieId": "ddbb311a-38e4-11e6-8aa3-0003ff500b9d",
+                "ActorId": "1cb9da05-38e5-11e6-8aa3-0003ff500b9d"
+            }
+        ],
+        "FK_References": [
+            { "Table": "TestPinata_Movie" },
+            { "Table": "TestPinata_Actor" }
+        ]
+    },
+    {
+        "Table": "TestPinata_Actor",
+        "Keys": [ "Id" ],
+        "Relationship": "None",
+        "Schema": [
+            {
+                "Column": "Id",
+                "Type": "guid"
             },
             {
-                "Column": "ConversionB",
-                "Type": "decimal"
-            },
-            {
-                "Column": "WinnerId",
+                "Column": "Name",
                 "Type": "string"
             }
         ],
         "Rows": [
             {
-                "IdA": "05930c11e0e24c6d8b2854da30997e0b",
-                "IdB": "1f594d5f270248389477273e576f193b",
-                "CustomerId": "064b7a45-4372-4155-a286-a06a97c7d626",
-                "CounterA": "10",
-                "CounterB": "20",
-                "StartDate": "2016-06-01",
-                "EndDate": "",
-                "TestStatusId": "1",
-                "ChannelTypeId": "4",
-                "ConversionA": "0,50",
-                "ConversionB": "1,00",
-                "WinnerId": ""
+                "Id": "b3e6447b-38e3-11e6-8aa3-0003ff500b9d",
+                "Name": "Chris Evans"
+            },
+            {
+                "Id": "dee91372-38e3-11e6-8aa3-0003ff500b9d",
+                "Name": "Robert Downey Jr."
+            },
+            {
+                "Id": "e4b94626-38e3-11e6-8aa3-0003ff500b9d",
+                "Name": "Scarlett Johansson"
+            },
+            {
+                "Id": "1cb9da05-38e5-11e6-8aa3-0003ff500b9d",
+                "Name": "Ryan Reynolds"
             }
         ],
-        "FK_References": [
-            { "Table": "Platform_ABTestStatus" }
-        ]
+        "FK_References": [ ]
     },
     {
-        "Table": "Platform_ABTestStatus",
-        "Keys": [ "TestStatusId" ],
+        "Table": "TestPinata_Category",
+        "Keys": [ "Id" ],
+        "Relationship": "None",
         "Schema": [
             {
-                "Column": "TestStatusId",
+                "Column": "Id",
                 "Type": "int"
             },
             {
@@ -87,20 +125,20 @@
         ],
         "Rows": [
             {
-                "TestStatusId": "1",
-                "Name": "Running"
+                "Id": "1",
+                "Name": "Action"
             },
             {
-                "TestStatusId": "2",
-                "Name": "FinishedByResult"
+                "Id": "2",
+                "Name": "Sci-Fi"
             },
             {
-                "TestStatusId": "3",
-                "Name": "FinishedByTime"
+                "Id": "3",
+                "Name": "Thriller"
             },
             {
-                "TestStatusId": "4",
-                "Name": "FinishedByUser"
+                "Id": "4",
+                "Name": "Adventure"
             }
         ],
         "FK_References": [ ]

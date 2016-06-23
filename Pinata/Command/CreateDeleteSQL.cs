@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Jil;
 using Pinata.Common;
 
@@ -16,22 +17,24 @@ namespace Pinata.Command
             {
                 string fields = string.Empty;
 
-                foreach (var schema in sample.Schema)
+                foreach (var key in sample.Keys)
                 {
-                    if (sample.Keys.Contains(schema.Column))
-                    {
-                        string value = JSON.DeserializeDynamic(row.ToString())[schema.Column];
+                    Common.Schema schema = sample.Schema.SingleOrDefault(s => s.Column == key);
 
-                        string parsedValue = "{0}".FormatWith(ParserDataType.ParseSQL((ParserDataType.DataType)Enum.Parse(typeof(ParserDataType.DataType), schema.Type, true), value));
+                    string value = JSON.DeserializeDynamic(row.ToString())[schema.Column];
 
-                        fields += "{0}={1},".FormatWith(schema.Column, parsedValue);
-                    }
+                    string parsedValue = "{0}".FormatWith(ParserDataType.ParseSQL((ParserDataType.DataType)Enum.Parse(typeof(ParserDataType.DataType), schema.Type, true), value));
+
+                    fields += "{0}={1} AND".FormatWith(schema.Column, parsedValue);
                 }
 
-                dataSQL += baseSQL.FormatWith(sample.Table, fields.Substring(0, fields.LastIndexOf(',')));
+                dataSQL += baseSQL.FormatWith(sample.Table, fields.Substring(0, fields.LastIndexOf("AND")));
             }
 
-            sqlList.Add(dataSQL);
+            if (!string.IsNullOrEmpty(dataSQL))
+            {
+                sqlList.Add(dataSQL);
+            }
         }
     }
 }
