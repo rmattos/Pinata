@@ -25,7 +25,7 @@ namespace Pinata.Command
 
                     string parsedValue = "{0}".FormatWith(ParserDataType.ParseSQL((ParserDataType.DataType)Enum.Parse(typeof(ParserDataType.DataType), schema.Type, true), value));
 
-                    fields += "{0}={1} AND".FormatWith(schema.Column, parsedValue);
+                    fields += "{0}={1} AND ".FormatWith(schema.Column, parsedValue);
                 }
 
                 dataSQL += baseSQL.FormatWith(sample.Table, fields.Substring(0, fields.LastIndexOf("AND")));

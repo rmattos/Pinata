@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Threading.Tasks;
 using Dapper;
 using Pinata.Common;
 
@@ -15,13 +14,13 @@ namespace Pinata.Data.MySQL
         {
             try
             {
-                Parallel.ForEach(list, sql =>
+                foreach (var sql in list)
                 {
                     using (IDbConnection connection = GetConnection())
                     {
                         connection.Execute(sql.ToString(), null, null, 0, null);
                     }
-                });
+                }
 
                 return true;
             }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Pinata.Common
 {
@@ -9,6 +10,14 @@ namespace Pinata.Common
         public string Relationship { get; set; }
 
         public IList<References> FK_References { get; set; }
+
+        public RelationshipType Type
+        {
+            get
+            {
+                return (RelationshipType)Enum.Parse(typeof(RelationshipType), Relationship, true);
+            }
+        }
     }
 
     public class References

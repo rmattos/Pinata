@@ -1,4 +1,5 @@
-﻿using Pinata.Command;
+﻿using System.Collections.Generic;
+using Pinata.Command;
 using Pinata.Data;
 
 namespace Pinata
@@ -50,6 +51,7 @@ namespace Pinata
         public override void Feed(Options option = Options.None, params string[] samplePath)
         {
             OptionType = option;
+            base.sampleData = new List<object>();
 
             if (samplePath != null)
             {

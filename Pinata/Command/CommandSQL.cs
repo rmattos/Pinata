@@ -14,7 +14,7 @@ namespace Pinata.Command
             IList<SampleSQLData> convertedList = list.Cast<SampleSQLData>().ToList();
             IList<object> deleteList = new List<object>();
 
-            IList<SampleSQLData> childData = convertedList.Where(l => l.FK_References.Count > 0).ToList();
+            IList<SampleSQLData> childData = convertedList.Where(l => l.FK_References.Count > 0).OrderByDescending(o => (int)o.Type).ToList();
             IList<SampleSQLData> parentData = convertedList.Where(l => l.FK_References.Count == 0).ToList();
 
             foreach (var child in childData)
