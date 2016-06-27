@@ -1,7 +1,7 @@
 Piñata - In Progress
 ======
 
-Piñata is a lightweight .NET library for managing database state during unit testing
+Piñata is a simple and lightweight .NET library for managing database state during unit testing
 
 ###How to install via NugGet
 
@@ -9,20 +9,21 @@ To install Piñata, run the following command in the Package Manager Console
 
 PM> Install-Package Pinata
 
-###Usage
+###Database server supports:
 
-####Initiate Pinata
+* MySQL
+* MongoDB 
+* Microsoft SQL Server - *coming soon*
+* SQLLite - *coming soon*
+* PostgreSQL  - *coming soon*
+* Oracle - *coming soon*
 
-```C#
-Pinata pinata new Pinata(ConfigurationManager.ConnectionStrings["conn"].ToString(), Provider.Type.MySQL, "Sample/sqlData.json");
-```
-####Load Data
+###Basic Usage
 
-```C#
+```csharp
+Pinata pinata = new Pinata(ConfigurationManager.ConnectionStrings["conn"].ToString(), Provider.Type.MySQL, "Sample/sqlData.json");
+
 pinata.Feed();
-```
-####Execute Command
 
-```C#
 pinata.Execute(CommandType.Insert);
 ```
