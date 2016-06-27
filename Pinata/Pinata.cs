@@ -6,18 +6,14 @@ namespace Pinata
 {
     public class Pinata : BasePinata
     {
-        private ICommand _command = null;
-
         public Pinata(string connectionString, Provider.Type provider) :
             base(connectionString, provider)
         {
-            _command = CommandFactory.Create(provider);
         }
 
         public Pinata(string connectionString, Provider.Type provider, params string[] samplePath) :
             base(connectionString, provider, samplePath)
         {
-            _command = CommandFactory.Create(provider);
         }
 
         public override bool Execute(CommandType commandType)
@@ -28,14 +24,12 @@ namespace Pinata
             {
                 case CommandType.Insert:
                     {
-                        commandResposne = Repository.Insert(_command.CreateInsert(base.sampleData));
+                        commandResposne = Repository.Insert(Command.CreateInsert(base.SampleData));
                         break;
                     }
-                case CommandType.Update:
-                    break;
                 case CommandType.Delete:
                     {
-                        commandResposne = Repository.Delete(_command.CreateDelete(base.sampleData));
+                        commandResposne = Repository.Delete(Command.CreateDelete(base.SampleData));
                         break;
                     }
             }
@@ -43,15 +37,14 @@ namespace Pinata
             return commandResposne;
         }
 
-        public override void Feed(Options option = Options.None)
+        public override void Feed()
         {
-            Feed(option, null);
+            Feed(null);
         }
 
-        public override void Feed(Options option = Options.None, params string[] samplePath)
+        public override void Feed(params string[] samplePath)
         {
-            OptionType = option;
-            base.sampleData = new List<object>();
+            base.SampleData = new List<object>();
 
             if (samplePath != null)
             {
@@ -64,14 +57,12 @@ namespace Pinata
                 {
                     case Data.Provider.Type.MySQL:
                         {
-                            base.sampleData.AddRange(DeserializerProcessor.Execute(new DeserializerSQL(), sample));
+                            base.SampleData.AddRange(DeserializerProcessor.Execute(new DeserializerSQL(), sample));
                             break;
                         }
-                    case Data.Provider.Type.SQLServer:
-                        break;
                     case Data.Provider.Type.MongoDB:
                         {
-                            base.sampleData.AddRange(DeserializerProcessor.Execute(new DeserializerMongo(), sample));
+                            base.SampleData.AddRange(DeserializerProcessor.Execute(new DeserializerMongo(), sample));
                             break;
                         }
                 }

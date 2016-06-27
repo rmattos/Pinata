@@ -8,8 +8,8 @@
     <ProjectGuid>{F9AB45A4-B8D0-46B4-BE75-0DFD45F3B75F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Piñata.UnitTest</RootNamespace>
-    <AssemblyName>Piñata.UnitTest</AssemblyName>
+    <RootNamespace>Pinata.UnitTest</RootNamespace>
+    <AssemblyName>Pinata.UnitTest</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -82,6 +82,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PinataMongoTest.cs" />
     <Compile Include="PinataTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

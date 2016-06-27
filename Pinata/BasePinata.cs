@@ -6,16 +6,19 @@ namespace Pinata
 {
     public abstract class BasePinata
     {
-        protected List<object> sampleData = new List<object>();
-
-        protected IPinataRepository Repository { get; set; }
+        protected List<object> SampleData { get; set; }
         protected string[] SamplePath { get; set; }
+
+        protected ICommand Command { get; set; }
+        protected IPinataRepository Repository { get; set; }
+
         protected Options OptionType { get; set; }
         protected Provider.Type Provider { get; set; }
 
         public BasePinata(string connectionString, Provider.Type provider)
         {
             Provider = provider;
+            Command = CommandFactory.Create(provider);
             Repository = RepositoryFactory.Create(connectionString, provider);
         }
 
@@ -23,6 +26,7 @@ namespace Pinata
         {
             Provider = provider;
             SamplePath = samplePath;
+            Command = CommandFactory.Create(provider);
             Repository = RepositoryFactory.Create(connectionString, provider);
         }
 
@@ -31,9 +35,9 @@ namespace Pinata
             SamplePath = samplePath;
         }
 
-        public abstract void Feed(Options option = Options.None);
+        public abstract void Feed();
 
-        public abstract void Feed(Options option = Options.None, params string[] samplePath);
+        public abstract void Feed(params string[] samplePath);
 
         public abstract bool Execute(CommandType commandType);
     }

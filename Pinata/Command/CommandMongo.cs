@@ -23,14 +23,13 @@ namespace Pinata.Command
 
                 foreach (var row in sample.Rows)
                 {
-                    foreach (var schema in sample.Schema)
+                    foreach (var key in sample.Keys)
                     {
-                        if (sample.Keys.Contains(schema.Column))
-                        {
-                            string value = JSON.DeserializeDynamic(row.ToString())[schema.Column];
+                        Common.Schema schema = sample.Schema.SingleOrDefault(s => s.Column == key);
 
-                            elementList.Add(new BsonElement(schema.Column, ParserDataType.ParseMongo((ParserDataType.DataType)Enum.Parse(typeof(ParserDataType.DataType), schema.Type, true), value)));
-                        }
+                        string value = JSON.DeserializeDynamic(row.ToString())[schema.Column];
+
+                        elementList.Add(new BsonElement(schema.Column, ParserDataType.ParseMongo((ParserDataType.DataType)Enum.Parse(typeof(ParserDataType.DataType), schema.Type, true), value)));
                     }
                 }
 

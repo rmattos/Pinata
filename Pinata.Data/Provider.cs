@@ -19,7 +19,7 @@ namespace Pinata.Data
         public enum Type
         {
             MySQL = 1,
-            SQLServer,
+            //SQLServer,
             MongoDB
         }
     }

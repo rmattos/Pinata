@@ -15,8 +15,6 @@ namespace Pinata.Data
                         repository = new MySQL.PinataRepository(connectionString, Provider.MySQL);
                         break;
                     }
-                case Provider.Type.SQLServer:
-                    break;
                 case Provider.Type.MongoDB:
                     {
                         repository = new MongoDB.PinataRepository(new MongoUrl(connectionString));

@@ -6,18 +6,18 @@ using Xunit;
 
 namespace Piñata.UnitTest
 {
-    public class PinataTest
+    public class PinataMongoTest
     {
         protected Pinata.Pinata _sutPinata = null;
 
-        public PinataTest()
+        public PinataMongoTest()
         {
-            _sutPinata = new Pinata.Pinata(ConfigurationManager.ConnectionStrings["soclminer_mysql"].ToString(), Provider.Type.MySQL, "Sample/sqlData.json");
+            _sutPinata = new Pinata.Pinata(ConfigurationManager.ConnectionStrings["soclminer_mongodb"].ToString(), Provider.Type.MongoDB, "Sample/mongoData.json");
             _sutPinata.Feed();
             _sutPinata.Execute(CommandType.Delete);
         }
 
-        public class Execute : PinataTest
+        public class Execute : PinataMongoTest
         {
             public class Given_A_Insert_Command : IClassFixture<Execute>
             {
@@ -35,7 +35,6 @@ namespace Piñata.UnitTest
                     _sutPinata.Execute(CommandType.Insert).Should().BeTrue();
                 }
             }
-
         }
     }
 }

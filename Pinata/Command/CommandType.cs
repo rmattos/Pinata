@@ -3,7 +3,7 @@
     public enum CommandType
     {
         Insert = 1,
-        Update = 2,
+        //Update = 2,
         Delete = 3
     }
 }

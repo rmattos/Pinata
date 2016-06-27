@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using MongoDB.Bson;
 
@@ -18,41 +19,65 @@ namespace Pinata
             switch (type)
             {
                 case DataType.Int:
-                    parsedValue = "{0}".FormatWith(int.Parse(value));
-                    break;
+                    {
+                        parsedValue = "{0}".FormatWith(int.Parse(value));
+                        break;
+                    }
                 case DataType.Long:
-                    parsedValue = "{0}".FormatWith(long.Parse(value));
-                    break;
+                    {
+                        parsedValue = "{0}".FormatWith(long.Parse(value));
+                        break;
+                    }
                 case DataType.Short:
-                    parsedValue = "{0}".FormatWith(short.Parse(value));
-                    break;
+                    {
+                        parsedValue = "{0}".FormatWith(short.Parse(value));
+                        break;
+                    }
                 case DataType.Byte:
-                    parsedValue = "{0}".FormatWith(byte.Parse(value));
-                    break;
+                    {
+                        parsedValue = "{0}".FormatWith(byte.Parse(value));
+                        break;
+                    }
                 case DataType.Bool:
-                    parsedValue = "{0}".FormatWith(bool.Parse(value));
-                    break;
+                    {
+                        parsedValue = "{0}".FormatWith(bool.Parse(value));
+                        break;
+                    }
                 case DataType.String:
-                    parsedValue = "'{0}'".FormatWith(Convert.ToString(value));
-                    break;
+                    {
+                        parsedValue = "'{0}'".FormatWith(Convert.ToString(value));
+                        break;
+                    }
                 case DataType.Char:
-                    parsedValue = "'{0}'".FormatWith(Convert.ToString(value));
-                    break;
+                    {
+                        parsedValue = "'{0}'".FormatWith(Convert.ToString(value));
+                        break;
+                    }
                 case DataType.Guid:
-                    parsedValue = "'{0}'".FormatWith(Guid.Parse(value));
-                    break;
+                    {
+                        parsedValue = "'{0}'".FormatWith(Guid.Parse(value));
+                        break;
+                    }
                 case DataType.Double:
-                    parsedValue = "'{0}'".FormatWith(CultureInfo.InvariantCulture, double.Parse(value));
-                    break;
+                    {
+                        parsedValue = "'{0}'".FormatWith(CultureInfo.InvariantCulture, double.Parse(value));
+                        break;
+                    }
                 case DataType.Decimal:
-                    parsedValue = "'{0}'".FormatWith(CultureInfo.InvariantCulture, decimal.Parse(value));
-                    break;
+                    {
+                        parsedValue = "'{0}'".FormatWith(CultureInfo.InvariantCulture, decimal.Parse(value));
+                        break;
+                    }
                 case DataType.Float:
-                    parsedValue = "'{0}'".FormatWith(CultureInfo.InvariantCulture, float.Parse(value));
-                    break;
+                    {
+                        parsedValue = "'{0}'".FormatWith(CultureInfo.InvariantCulture, float.Parse(value));
+                        break;
+                    }
                 case DataType.DateTime:
-                    parsedValue = "'{0}'".FormatWith(DateTime.Parse(value).ToString("yyyy-MM-dd hh:mm:ss"));
-                    break;
+                    {
+                        parsedValue = "'{0}'".FormatWith(DateTime.Parse(value).ToString("yyyy-MM-dd hh:mm:ss"));
+                        break;
+                    }
                 default:
                     throw new ArgumentException("Invalid Data Type");
             }
@@ -62,56 +87,68 @@ namespace Pinata
 
         public static BsonValue ParseMongo(DataType type, string value)
         {
-            BsonValue parsedValue = string.Empty;
+            BsonValue parsedValue = null;
 
             switch (type)
             {
                 case DataType.Int:
                     {
-                        parsedValue = BsonValue.Create(value).AsInt32;
+                        parsedValue = BsonValue.Create(int.Parse(value)).AsInt32;
                         break;
                     }
                 case DataType.Long:
                     {
-                        parsedValue = BsonValue.Create(value).AsInt64;
+                        parsedValue = BsonValue.Create(long.Parse(value)).AsInt64;
                         break;
                     }
                 case DataType.Short:
+                    {
+                        parsedValue = BsonValue.Create(short.Parse(value));
+                        break;
+                    }
                 case DataType.Byte:
                     {
-                        parsedValue = BsonValue.Create(value);
+                        parsedValue = BsonValue.Create(byte.Parse(value));
                         break;
                     }
                 case DataType.Bool:
                     {
-                        parsedValue = BsonValue.Create(value).AsBoolean;
+                        parsedValue = BsonValue.Create(bool.Parse(value)).AsBoolean;
                         break;
                     }
                 case DataType.String:
+                    {
+                        parsedValue = BsonValue.Create(Convert.ToString(value)).AsString;
+                        break;
+                    }
                 case DataType.Char:
                     {
-                        parsedValue = BsonValue.Create(value).AsString;
+                        parsedValue = BsonValue.Create(Convert.ToChar(value)).AsString;
                         break;
                     }
                 case DataType.Guid:
                     {
-                        parsedValue = BsonValue.Create(value).AsGuid;
+                        parsedValue = BsonValue.Create(Guid.Parse(value.Replace(new List<string>() { "{", "}" }, ""))).AsGuid;
                         break;
                     }
                 case DataType.Double:
                     {
-                        parsedValue = BsonValue.Create(value).AsDouble;
+                        parsedValue = BsonValue.Create(double.Parse(value)).AsDouble;
                         break;
                     }
                 case DataType.Decimal:
+                    {
+                        parsedValue = BsonValue.Create(decimal.Parse(value));
+                        break;
+                    }
                 case DataType.Float:
                     {
-                        parsedValue = BsonValue.Create(value);
+                        parsedValue = BsonValue.Create(float.Parse(value));
                         break;
                     }
                 case DataType.DateTime:
                     {
-                        parsedValue = BsonValue.Create(value).ToUniversalTime();
+                        parsedValue = BsonValue.Create(DateTime.Parse(value)).ToLocalTime();
                         break;
                     }
                 case DataType.Array:

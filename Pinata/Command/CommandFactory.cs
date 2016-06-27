@@ -15,11 +15,6 @@ namespace Pinata.Command
                         command = new CommandSQL();
                         break;
                     }
-                case Provider.Type.SQLServer:
-                    {
-                        command = new CommandSQL();
-                        break;
-                    }
                 case Provider.Type.MongoDB:
                     {
                         command = new CommandMongo();
