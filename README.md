@@ -20,8 +20,51 @@ PM> Install-Package Pinata
 
 ###Basic Usage
 
+####Create a JSON file with your data
+
+```json
+[
+  {
+    "Table": "TestPinata_Actor",
+    "Keys": [ "Id" ],
+    "Relationship": "None",
+    "Schema": [
+        {
+            "Column": "Id",
+            "Type": "guid"
+        },
+        {
+            "Column": "Name",
+            "Type": "string"
+        }
+    ],
+    "Rows": [
+        {
+            "Id": "b3e6447b-38e3-11e6-8aa3-0003ff500b9d",
+            "Name": "Chris Evans"
+        },
+        {
+            "Id": "dee91372-38e3-11e6-8aa3-0003ff500b9d",
+            "Name": "Robert Downey Jr."
+        },
+        {
+            "Id": "e4b94626-38e3-11e6-8aa3-0003ff500b9d",
+            "Name": "Scarlett Johansson"
+        },
+        {
+            "Id": "1cb9da05-38e5-11e6-8aa3-0003ff500b9d",
+            "Name": "Ryan Reynolds"
+        }
+    ],
+    "FK_References": [ ]
+  }
+]
+
+```
+####Create a new instance of Pinata and execute an insert command
+
 ```csharp
-Pinata pinata = new Pinata(ConfigurationManager.ConnectionStrings["conn"].ToString(), Provider.Type.MySQL, "Sample/sqlData.json");
+Pinata pinata = new Pinata(ConfigurationManager.ConnectionStrings["myConnectionString"].ToString(), Provider.Type.MySQL, "data.json");
 
 pinata.Feed();
 
