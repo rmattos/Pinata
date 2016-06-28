@@ -61,7 +61,7 @@ PM> Install-Package Pinata
 ]
 
 ```
-####Create a new instance of Pinata and execute an insert command
+####Loading data into database
 
 ```csharp
 Pinata pinata = new Pinata(ConfigurationManager.ConnectionStrings["myConnectionString"].ToString(), Provider.Type.MySQL, "data.json");
