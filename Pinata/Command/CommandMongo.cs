@@ -59,7 +59,16 @@ namespace Pinata.Command
 
                         foreach (var schema in sample.Schema)
                         {
-                            string value = JSON.DeserializeDynamic(row.ToString())[schema.Column];
+                            string value = string.Empty;
+
+                            if (schema.Type.ToLower() == ParserDataType.DataType.Array.ToString().ToLower() || schema.Type.ToLower() == ParserDataType.DataType.Document.ToString().ToLower())
+                            {
+                                value = JSON.DeserializeDynamic(row.ToString())[schema.Column].ToString();
+                            }
+                            else
+                            {
+                                value = JSON.DeserializeDynamic(row.ToString())[schema.Column];
+                            }
 
                             document.Add(new BsonElement(schema.Column, ParserDataType.ParseMongo((ParserDataType.DataType)Enum.Parse(typeof(ParserDataType.DataType), schema.Type, true), value)));
                         }

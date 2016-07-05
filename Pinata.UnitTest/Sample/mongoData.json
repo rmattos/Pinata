@@ -5,7 +5,7 @@
         "Schema": [
             {
                 "Column": "_id",
-                "Type": "guid"
+                "Type": "objectId"
             },
             {
                 "Column": "Email",
@@ -18,20 +18,42 @@
             {
                 "Column": "Birthday",
                 "Type": "datetime"
+            },
+            {
+                "Column": "Interest",
+                "Type": "array"
+            },
+            {
+                "Column": "Address",
+                "Type": "document"
             }
         ],
         "Rows": [
             {
-                "_id": "012d8fe0-1316-4807-8d96-3ca32d9cddac",
+                "_id": "577aedd825e7695ec2a81145",
                 "Email": "teste@soclminer.com.br",
                 "Age": "28",
-                "Birthday": "1990-01-25T00:00:00"
+                "Birthday": "1990-01-25T10:30:00.000Z",
+                "Interest": [ "sports" ],
+                "Address": {
+                    "Street": "R. Maria Carolina, 495",
+                    "District": "Jardim Paulistano",
+                    "City": "São Paulo",
+                    "State": "SP"
+                }
             },
             {
-                "_id": "012d9efb-29c5-4642-85ac-fa51b3d50d74",
+                "_id": "577aedfc25e7695ec2a81147",
                 "Email": "teste2@soclminer.com.br",
                 "Age": "31",
-                "Birthday":  "1985-03-15T00:00:00"
+                "Birthday": "1985-03-15T00:00:00.000Z",
+                "Interest": [ "series", "anime", "sports" ],
+                "Address": {
+                    "Street": "R. Maria Carolina, 495",
+                    "District": "Jardim Paulistano",
+                    "City": "São Paulo",
+                    "State": "SP"
+                }
             }
         ]
     }

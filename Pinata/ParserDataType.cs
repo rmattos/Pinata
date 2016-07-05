@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 
 namespace Pinata
 {
@@ -148,17 +149,22 @@ namespace Pinata
                     }
                 case DataType.DateTime:
                     {
-                        parsedValue = BsonValue.Create(DateTime.Parse(value)).ToLocalTime();
+                        parsedValue = BsonValue.Create(DateTime.Parse(value, CultureInfo.InvariantCulture));
                         break;
                     }
                 case DataType.Array:
                     {
-                        parsedValue = BsonValue.Create(value).AsBsonArray;
+                        parsedValue = BsonValue.Create(BsonSerializer.Deserialize<BsonArray>(value)).AsBsonArray;
                         break;
                     }
                 case DataType.Document:
                     {
-                        parsedValue = BsonValue.Create(value).AsBsonDocument;
+                        parsedValue = BsonValue.Create(BsonDocument.Parse(value)).AsBsonDocument;
+                        break;
+                    }
+                case DataType.ObjectId:
+                    {
+                        parsedValue = BsonValue.Create(ObjectId.Parse(value.Replace(new List<string>() { "\\", "/", "'" }, ""))).AsObjectId;
                         break;
                     }
                 default:
@@ -183,7 +189,8 @@ namespace Pinata
             Float,
             DateTime,
             Array,
-            Document
+            Document,
+            ObjectId
         }
     }
 }
