@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Pinata</id>
-    <version>0.10.0-beta</version>
+    <version>0.10.1-beta</version>
     <title>Pinata</title>
     <authors>rmattos</authors>
     <owners></owners>
@@ -15,10 +15,10 @@
       Piñata is a simple and lightweight .NET library for managing database state during unit testing
     </summary>
     <language>en-US</language>
-    <projectUrl>https://nuget.org/packages/Pinata.Package</projectUrl>
+    <projectUrl>https://github.com/rmattos/Pinata</projectUrl>
     <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+    <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
     <copyright>Copyright  2016</copyright>
     <dependencies>
       <dependency id="Jil" version="2.14.3" />
@@ -29,7 +29,7 @@
       <dependency id="MySql.Data" version="6.9.8" />
     </dependencies>
     <references></references>
-    <tags></tags>
+    <tags>unittest test database mysql mongo sqlserver</tags>
   </metadata>
   <files>
     <file src="..\Pinata\bin\Release\*.dll" target="lib\net45"></file>
