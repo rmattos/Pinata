@@ -10,7 +10,7 @@ Piñata is a simple and lightweight .NET library for managing database state dur
 
 To install Piñata, run the following command in the Package Manager Console
 
-PM> Install-Package Pinata -Version 0.10.0-beta
+PM> Install-Package Pinata -Pre
 
 ###Database server supports:
 
