@@ -207,7 +207,7 @@ Parameter | Type | Description
 --- | --- | ---
 CommandType | enum | type of command to execute. values: CommandType.Insert, CommandType.Delete
 
-###Supported data types
+###Supported data types at schema
 
 * Int 
 * Long 
