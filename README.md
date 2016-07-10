@@ -1,4 +1,6 @@
-Piñata - In Progress
+![alt text](https://img.shields.io/badge/nuget-v0.10.0--beta-blue.svg "version")
+
+Piñata
 ======
 
 Piñata is a simple and lightweight .NET library for managing database state during unit testing
