@@ -77,7 +77,7 @@ pinata.Execute(CommandType.Insert);
 How to use
 ======
 
-###Json structure to SQL database
+###JSON structure to SQL database
 
 ```json
 [
@@ -89,14 +89,20 @@ How to use
 		{
             "Column": "id",
             "Type": "int"
+        },
+        {
+            "Column": "name",
+            "Type": "string"
         }
 	],
     "Rows": [
 		{
-			"id": "1"
+			"id": "1",
+			"name": "Chris"
 		},
 		{
-			"id": "2"
+			"id": "2",
+			"name": "Robert"
 		}
 	],
     "FK_References": [
@@ -116,7 +122,7 @@ Schema | array | type of data value to each column | types: int, long, short, by
 Rows | array | data to insert on database |
 FK_References | array | foreign key tables |
 
-###Json structure to NoSQL database
+###JSON structure to NoSQL database
 
 ```json
 [
@@ -218,3 +224,168 @@ CommandType | enum | type of command to execute. values: CommandType.Insert, Com
 * Array
 * Document
 * ObjectId
+
+###JSON example of tables with relationship to SQL database
+
+```json
+[
+    {
+        "Table": "TestPinata_Movie",
+        "Keys": [ "Id" ],
+        "Relationship": "OneToMany",
+        "Schema": [
+            {
+                "Column": "Id",
+                "Type": "guid"
+            },
+            {
+                "Column": "Name",
+                "Type": "string"
+            },
+            {
+                "Column": "CategoryId",
+                "Type": "int"
+            }
+        ],
+        "Rows": [
+            {
+                "Id": "adef64eb-38e4-11e6-8aa3-0003ff500b9d",
+                "Name": "Capitan America - Civil War",
+                "CategoryId": "1"
+            },
+            {
+                "Id": "b6210be7-38e4-11e6-8aa3-0003ff500b9d",
+                "Name": "Avangers",
+                "CategoryId": "4"
+            },
+            {
+                "Id": "ddbb311a-38e4-11e6-8aa3-0003ff500b9d",
+                "Name": "Deadpool",
+                "CategoryId": "1"
+            }
+        ],
+        "FK_References": [
+            { "Table": "TestPinata_Category" }
+        ]
+    },
+    {
+        "Table": "TestPinata_MovieActor",
+        "Keys": [ "MovieId", "ActorId" ],
+        "Relationship": "ManyToMany",
+        "Schema": [
+            {
+                "Column": "MovieId",
+                "Type": "guid"
+            },
+            {
+                "Column": "ActorId",
+                "Type": "guid"
+            }
+        ],
+        "Rows": [
+            {
+                "MovieId": "adef64eb-38e4-11e6-8aa3-0003ff500b9d",
+                "ActorId": "b3e6447b-38e3-11e6-8aa3-0003ff500b9d"
+            },
+            {
+                "MovieId": "adef64eb-38e4-11e6-8aa3-0003ff500b9d",
+                "ActorId": "dee91372-38e3-11e6-8aa3-0003ff500b9d"
+            },
+            {
+                "MovieId": "adef64eb-38e4-11e6-8aa3-0003ff500b9d",
+                "ActorId": "e4b94626-38e3-11e6-8aa3-0003ff500b9d"
+            },
+            {
+                "MovieId": "ddbb311a-38e4-11e6-8aa3-0003ff500b9d",
+                "ActorId": "1cb9da05-38e5-11e6-8aa3-0003ff500b9d"
+            }
+        ],
+        "FK_References": [
+            { "Table": "TestPinata_Movie" },
+            { "Table": "TestPinata_Actor" }
+        ]
+    },
+    {
+        "Table": "TestPinata_Actor",
+        "Keys": [ "Id" ],
+        "Relationship": "None",
+        "Schema": [
+            {
+                "Column": "Id",
+                "Type": "guid"
+            },
+            {
+                "Column": "Name",
+                "Type": "string"
+            }
+        ],
+        "Rows": [
+            {
+                "Id": "b3e6447b-38e3-11e6-8aa3-0003ff500b9d",
+                "Name": "Chris Evans"
+            },
+            {
+                "Id": "dee91372-38e3-11e6-8aa3-0003ff500b9d",
+                "Name": "Robert Downey Jr."
+            },
+            {
+                "Id": "e4b94626-38e3-11e6-8aa3-0003ff500b9d",
+                "Name": "Scarlett Johansson"
+            },
+            {
+                "Id": "1cb9da05-38e5-11e6-8aa3-0003ff500b9d",
+                "Name": "Ryan Reynolds"
+            }
+        ],
+        "FK_References": [ ]
+    },
+    {
+        "Table": "TestPinata_Category",
+        "Keys": [ "Id" ],
+        "Relationship": "None",
+        "Schema": [
+            {
+                "Column": "Id",
+                "Type": "int"
+            },
+            {
+                "Column": "Name",
+                "Type": "string"
+            }
+        ],
+        "Rows": [
+            {
+                "Id": "1",
+                "Name": "Action"
+            },
+            {
+                "Id": "2",
+                "Name": "Sci-Fi"
+            },
+            {
+                "Id": "3",
+                "Name": "Thriller"
+            },
+            {
+                "Id": "4",
+                "Name": "Adventure"
+            }
+        ],
+        "FK_References": [ ]
+    }
+]
+ 
+```
+####Loading data into database
+
+Execute a delete command before, it will ensure that table will be clean before insert the data again
+
+```csharp
+Pinata pinata = new Pinata(ConfigurationManager.ConnectionStrings["myConnectionString"].ToString(), Provider.Type.MySQL, "sample/data.json");
+
+pinata.Feed();
+
+pinata.Execute(CommandType.Delete);
+
+pinata.Execute(CommandType.Insert);
+```
