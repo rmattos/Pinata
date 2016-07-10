@@ -77,7 +77,7 @@ pinata.Execute(CommandType.Insert);
 How to use
 ======
 
-###Json structure to SQL database
+###JSON structure to SQL database
 
 ```json
 [
@@ -89,14 +89,20 @@ How to use
 		{
             "Column": "id",
             "Type": "int"
+        },
+        {
+            "Column": "name",
+            "Type": "string"
         }
 	],
     "Rows": [
 		{
-			"id": "1"
+			"id": "1",
+			"name": "Chris"
 		},
 		{
-			"id": "2"
+			"id": "2",
+			"name": "Robert"
 		}
 	],
     "FK_References": [
@@ -116,7 +122,7 @@ Schema | array | type of data value to each column | types: int, long, short, by
 Rows | array | data to insert on database |
 FK_References | array | foreign key tables |
 
-###Json structure to NoSQL database
+###JSON structure to NoSQL database
 
 ```json
 [
