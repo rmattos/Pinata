@@ -31,7 +31,6 @@ namespace Piñata.UnitTest
                 [Fact]
                 public void When_Execute_Should_Return_True()
                 {
-                    _sutPinata.Feed();
                     _sutPinata.Execute(CommandType.Insert).Should().BeTrue();
                 }
             }
