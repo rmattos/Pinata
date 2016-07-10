@@ -376,12 +376,16 @@ CommandType | enum | type of command to execute. values: CommandType.Insert, Com
 ]
  
 ```
-####Load data
+####Loading data into database
+
+Execute a delete command before, it will ensure that table will be clean before insert the data again
 
 ```csharp
 Pinata pinata = new Pinata(ConfigurationManager.ConnectionStrings["myConnectionString"].ToString(), Provider.Type.MySQL, "sample/data.json");
 
 pinata.Feed();
+
+pinata.Execute(CommandType.Delete);
 
 pinata.Execute(CommandType.Insert);
 ```
