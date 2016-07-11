@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Pinata</id>
-    <version>0.10.1-beta</version>
+    <version>0.10.3-beta</version>
     <title>Pinata</title>
     <authors>rmattos</authors>
     <owners></owners>
@@ -29,7 +29,7 @@
       <dependency id="MySql.Data" version="6.9.8" />
     </dependencies>
     <references></references>
-    <tags>unittest test database mysql mongo sqlserver</tags>
+    <tags>integrationtest unittest test database mysql mongo sqlserver</tags>
   </metadata>
   <files>
     <file src="..\Pinata\bin\Release\*.dll" target="lib\net45"></file>
