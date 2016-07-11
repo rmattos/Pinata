@@ -1,4 +1,4 @@
-![alt text](https://img.shields.io/appveyor/ci/gruntjs/grunt/master.svg "build status") ![alt text](https://img.shields.io/badge/nuget-v0.10.0--beta-blue.svg "version")
+![alt text](https://img.shields.io/appveyor/ci/gruntjs/grunt/master.svg "build status") ![alt text](https://img.shields.io/badge/nuget-v0.10.1--beta-blue.svg "version")
 
 
 Piñata
