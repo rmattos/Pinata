@@ -3,7 +3,7 @@
 Piñata
 ======
 
-Piñata is a simple and lightweight .NET library for managing database state during unit testing
+Piñata is a simple and lightweight .NET library for managing database state during integration testing
 
 ###How to install via NugGet
 
