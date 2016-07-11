@@ -7,12 +7,12 @@
     <authors>rmattos</authors>
     <owners></owners>
     <description>
-      Piñata is a simple and lightweight .NET library for managing database state during unit testing
+      Piñata is a simple and lightweight .NET library for managing database state during integration testing
     </description>
     <releaseNotes>
     </releaseNotes>
     <summary>
-      Piñata is a simple and lightweight .NET library for managing database state during unit testing
+      Piñata is a simple and lightweight .NET library for managing database state during integration testing
     </summary>
     <language>en-US</language>
     <projectUrl>https://github.com/rmattos/Pinata</projectUrl>
