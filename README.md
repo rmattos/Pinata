@@ -176,7 +176,7 @@ Parameter | Type | Description
 --- | --- | ---
 ConnectionString | string
 Provider | enum | values: Provider.Type.MySQL , Provider.Type.MongoDB
-SamplePath | array | array of json files 
+SamplePath | array | array of json files, this is optional you can load json files direct from feed method as well.
 
 ###Load data into Pinata
 
