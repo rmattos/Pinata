@@ -11,6 +11,10 @@ To install Piñata, run the following command in the Package Manager Console
 
 PM> Install-Package Pinata -Pre
 
+###Compatibility
+
+.Net Framework 4.5 or higher
+
 ###Database server supports:
 
 * MySQL
