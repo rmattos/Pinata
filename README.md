@@ -228,8 +228,9 @@ CommandType | enum | type of command to execute. values: CommandType.Insert, Com
 * Document
 * ObjectId
 
+###Other JSON data examples
 ======
-###JSON example of tables with relationship to SQL database
+####JSON example of tables with relationship to SQL database
 
 ```json
 [
