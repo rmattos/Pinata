@@ -17,8 +17,8 @@ PM> Install-Package Pinata -Pre
 
 ###Database server supports:
 
-* MySQL
-* MongoDB 
+* MySQL (5.0 or higher)
+* MongoDB (2.6 and 3.0, 3.2 - *coming soon*)
 * Microsoft SQL Server - *coming soon*
 * SQLLite - *coming soon*
 * PostgreSQL  - *coming soon*
