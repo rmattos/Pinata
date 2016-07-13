@@ -228,8 +228,7 @@ CommandType | enum | type of command to execute. values: CommandType.Insert, Com
 * Document
 * ObjectId
 
-###Other JSON data examples
-======
+##Other JSON data examples
 ####JSON example of tables with relationship to SQL database
 
 ```json
@@ -395,15 +394,13 @@ pinata.Execute(CommandType.Delete);
 pinata.Execute(CommandType.Insert);
 ```
 
-======
-###OSS Libraries used
+##OSS Libraries used
 
 * [Jil](https://github.com/kevin-montrose/Jil)
 * [Dapper] (https://github.com/StackExchange/dapper-dot-net)
 * [Mongo C# Driver] (https://github.com/mongodb/mongo-csharp-driver)
 * [MySQL .NET Driver] (https://github.com/mysql/mysql-connector-net)
 
-======
-###License
+##License
 
 This software is licensed in [MIT License (MIT)](https://github.com/rmattos/Pinata/blob/master/LICENSE)
