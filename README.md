@@ -33,7 +33,6 @@ PM> Install-Package Pinata -Pre
   {
     "Table": "TestPinata_Actor",
     "Keys": [ "Id" ],
-    "Relationship": "None",
     "Schema": [
         {
             "Column": "Id",
@@ -87,7 +86,6 @@ How to use
   {
     "Table": "MyTable",
     "Keys": [ "key1", "key2" ],
-    "Relationship": "None",
     "Schema": [ 
 		{
             "Column": "id",
@@ -120,10 +118,9 @@ Field | Type | Description | Observation
 --- | --- | --- | ---
 Table | string | name of table inside database |
 Keys | array | primary keys of table | used as reference to execute delete operations
-Relationship | string | type of relationship with other tables | possible values : "None", "OneToOne", "OneToMany", "ManyToMany"
 Schema | array | type of data value to each column | types: int, long, short, byte, bool, string, char, guid, double, decimal, float, datetime, array, document, objectid
 Rows | array | data to insert on database |
-FK_References | array | foreign key tables | if you set this field, you must set a relationship type (OneToOne, OneToMany or ManyToMany)
+FK_References | array | foreign key tables |
 
 ###JSON structure to NoSQL database
 
@@ -236,7 +233,6 @@ CommandType | enum | type of command to execute. values: CommandType.Insert, Com
     {
         "Table": "TestPinata_Movie",
         "Keys": [ "Id" ],
-        "Relationship": "OneToMany",
         "Schema": [
             {
                 "Column": "Id",
@@ -275,7 +271,6 @@ CommandType | enum | type of command to execute. values: CommandType.Insert, Com
     {
         "Table": "TestPinata_MovieActor",
         "Keys": [ "MovieId", "ActorId" ],
-        "Relationship": "ManyToMany",
         "Schema": [
             {
                 "Column": "MovieId",
@@ -312,7 +307,6 @@ CommandType | enum | type of command to execute. values: CommandType.Insert, Com
     {
         "Table": "TestPinata_Actor",
         "Keys": [ "Id" ],
-        "Relationship": "None",
         "Schema": [
             {
                 "Column": "Id",
@@ -346,7 +340,6 @@ CommandType | enum | type of command to execute. values: CommandType.Insert, Com
     {
         "Table": "TestPinata_Category",
         "Keys": [ "Id" ],
-        "Relationship": "None",
         "Schema": [
             {
                 "Column": "Id",
