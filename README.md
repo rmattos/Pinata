@@ -68,10 +68,14 @@ PM> Install-Package Pinata -Pre
 ```
 ####Loading data into database
 
+Execute a delete command before, it will ensure that table will be clean before insert the data again
+
 ```csharp
-Pinata pinata = new Pinata(ConfigurationManager.ConnectionStrings["myConnectionString"].ToString(), Provider.Type.MySQL, "data.json");
+Pinata pinata = new Pinata(ConfigurationManager.ConnectionStrings["myConnectionString"].ToString(), Provider.Type.MySQL, "sample/data.json");
 
 pinata.Feed();
+
+pinata.Execute(CommandType.Delete);
 
 pinata.Execute(CommandType.Insert);
 ```
@@ -373,18 +377,70 @@ CommandType | enum | type of command to execute. values: CommandType.Insert, Com
 ]
  
 ```
-####Loading data into database
+####JSON example of collection with complex documents to MongoDB
 
-Execute a delete command before, it will ensure that table will be clean before insert the data again
-
-```csharp
-Pinata pinata = new Pinata(ConfigurationManager.ConnectionStrings["myConnectionString"].ToString(), Provider.Type.MySQL, "sample/data.json");
-
-pinata.Feed();
-
-pinata.Execute(CommandType.Delete);
-
-pinata.Execute(CommandType.Insert);
+```json
+[
+    {
+        "Collection": "TestPinata_User",
+        "Keys": [ "_id" ],
+        "Schema": [
+            {
+                "Column": "_id",
+                "Type": "objectId"
+            },
+            {
+                "Column": "Email",
+                "Type": "string"
+            },
+            {
+                "Column": "Age",
+                "Type": "int"
+            },
+            {
+                "Column": "Birthday",
+                "Type": "datetime"
+            },
+            {
+                "Column": "Interest",
+                "Type": "array"
+            },
+            {
+                "Column": "Address",
+                "Type": "document"
+            }
+        ],
+        "Rows": [
+            {
+                "_id": "577aedd825e7695ec2a81145",
+                "Email": "teste@soclminer.com.br",
+                "Age": "28",
+                "Birthday": "1990-01-25T10:30:00.000Z",
+                "Interest": [ "sports" ],
+                "Address": {
+                    "Street": "R. Maria Carolina, 1001",
+                    "District": "Jardim Paulistano",
+                    "City": "São Paulo",
+                    "State": "SP"
+                }
+            },
+            {
+                "_id": "577aedfc25e7695ec2a81147",
+                "Email": "teste2@soclminer.com.br",
+                "Age": "31",
+                "Birthday": "1985-03-15T00:00:00.000Z",
+                "Interest": [ "series", "anime", "sports" ],
+                "Address": {
+                    "Street": "R. Maria Carolina, 1001",
+                    "District": "Jardim Paulistano",
+                    "City": "São Paulo",
+                    "State": "SP"
+                }
+            }
+        ]
+    }
+]
+    
 ```
 
 ##OSS Libraries used
