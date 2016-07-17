@@ -123,7 +123,7 @@ Keys | array | primary keys of table | used as reference to execute delete opera
 Relationship | string | type of relationship with other tables | possible values : "None", "OneToOne", "OneToMany", "ManyToMany"
 Schema | array | type of data value to each column | types: int, long, short, byte, bool, string, char, guid, double, decimal, float, datetime, array, document, objectid
 Rows | array | data to insert on database |
-FK_References | array | foreign key tables |
+FK_References | array | foreign key tables | if you set this field, you must set a relationship type (OneToOne, OneToMany or ManyToMany)
 
 ###JSON structure to NoSQL database
 
