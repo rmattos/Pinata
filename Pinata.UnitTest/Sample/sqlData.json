@@ -2,7 +2,6 @@
     {
         "Table": "TestPinata_Movie",
         "Keys": [ "Id" ],
-        "Relationship": "OneToMany",
         "Schema": [
             {
                 "Column": "Id",
@@ -41,7 +40,6 @@
     {
         "Table": "TestPinata_MovieActor",
         "Keys": [ "MovieId", "ActorId" ],
-        "Relationship": "ManyToMany",
         "Schema": [
             {
                 "Column": "MovieId",
@@ -78,7 +76,6 @@
     {
         "Table": "TestPinata_Actor",
         "Keys": [ "Id" ],
-        "Relationship": "None",
         "Schema": [
             {
                 "Column": "Id",
@@ -112,7 +109,6 @@
     {
         "Table": "TestPinata_Category",
         "Keys": [ "Id" ],
-        "Relationship": "None",
         "Schema": [
             {
                 "Column": "Id",

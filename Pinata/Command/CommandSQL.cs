@@ -7,14 +7,29 @@ namespace Pinata.Command
 {
     public class CommandSQL : ICommand
     {
+        #region [ PRIVATE ]
+
         private IDictionary<string, bool> _tablesLoaded = new Dictionary<string, bool>();
+
+        private IList<SampleSQLData> SetDeletionPriority(IList<SampleSQLData> childData)
+        {
+            foreach (var childItem in childData)
+            {
+                childItem.DeletePriority = (childData.Any(c => c.FK_References.Where(fk => fk.Table == childItem.Table).Count() > 0)) ? DeletePriority.Low : DeletePriority.High;
+            }
+
+            return childData.OrderByDescending(o => (int)o.DeletePriority).ToList();
+        }
+
+        #endregion
 
         public IList<object> CreateDelete(IList<object> list)
         {
             IList<SampleSQLData> convertedList = list.Cast<SampleSQLData>().ToList();
             IList<object> deleteList = new List<object>();
 
-            IList<SampleSQLData> childData = convertedList.Where(l => l.FK_References.Count > 0).OrderByDescending(o => (int)o.Type).ToList();
+            IList<SampleSQLData> childData = SetDeletionPriority(convertedList.Where(l => l.FK_References.Count > 0).ToList());
+
             IList<SampleSQLData> parentData = convertedList.Where(l => l.FK_References.Count == 0).ToList();
 
             foreach (var child in childData)

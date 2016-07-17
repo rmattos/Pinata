@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Pinata.Common
 {
@@ -7,17 +6,9 @@ namespace Pinata.Common
     {
         public string Table { get; set; }
 
-        public string Relationship { get; set; }
-
         public IList<References> FK_References { get; set; }
 
-        public RelationshipType Type
-        {
-            get
-            {
-                return (RelationshipType)Enum.Parse(typeof(RelationshipType), Relationship, true);
-            }
-        }
+        public DeletePriority DeletePriority { get; set; }
     }
 
     public class References
@@ -25,11 +16,11 @@ namespace Pinata.Common
         public string Table { get; set; }
     }
 
-    public enum RelationshipType
+    public enum DeletePriority
     {
         None = 0,
-        OneToOne,
-        OneToMany,
-        ManyToMany
+        Low,
+        Medium,
+        High
     }
 }
