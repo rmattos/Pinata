@@ -126,7 +126,7 @@ Schema | array | type of data value to each column | types: int, long, short, by
 Rows | array | data to insert on database |
 FK_References | array | foreign key tables |
 
-###JSON structure to NoSQL database
+###JSON structure to MongoDB
 
 ```json
 [
