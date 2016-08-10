@@ -1,4 +1,4 @@
-![alt text](https://img.shields.io/appveyor/ci/gruntjs/grunt/master.svg "build status") ![alt text](https://img.shields.io/badge/coverage-1%25-red.svg "code coverage status") ![alt text](https://img.shields.io/badge/nuget-v0.11.0--beta-blue.svg "version")
+![alt text](https://img.shields.io/appveyor/ci/gruntjs/grunt/master.svg "build status") ![alt text](https://img.shields.io/badge/coverage-1%25-red.svg "code coverage status") ![alt text](https://img.shields.io/badge/nuget-v0.12.0-blue.svg "version")
 
 Piñata
 ======
@@ -9,7 +9,7 @@ Piñata is a simple and lightweight .NET library for managing database state dur
 
 To install Piñata, run the following command in the Package Manager Console
 
-PM> Install-Package Pinata -Pre
+PM> Install-Package Pinata
 
 ###Compatibility
 
