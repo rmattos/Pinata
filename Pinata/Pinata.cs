@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using Pinata.Command;
+﻿using Pinata.Command;
 using Pinata.Data;
+using System.Collections.Generic;
 
 namespace Pinata
 {
@@ -18,23 +18,23 @@ namespace Pinata
 
         public override bool Execute(CommandType commandType)
         {
-            bool commandResposne = false;
+            bool commandResponse = false;
 
             switch (commandType)
             {
                 case CommandType.Insert:
                     {
-                        commandResposne = Repository.Insert(Command.CreateInsert(base.SampleData));
+                        commandResponse = Repository.Insert(Command.CreateInsert(base.SampleData));
                         break;
                     }
                 case CommandType.Delete:
                     {
-                        commandResposne = Repository.Delete(Command.CreateDelete(base.SampleData));
+                        commandResponse = Repository.Delete(Command.CreateDelete(base.SampleData));
                         break;
                     }
             }
 
-            return commandResposne;
+            return commandResponse;
         }
 
         public override void Feed()
@@ -67,6 +67,30 @@ namespace Pinata
                         }
                 }
             }
+        }
+
+        public override bool Execute(CommandType commandType, IDictionary<string, string> parameters)
+        {
+            SetDynamicParameters(parameters);
+
+            bool commandResponse = false;
+
+            switch (commandType)
+            {
+                case CommandType.Insert:
+                    {
+                        commandResponse = Repository.Insert(Command.CreateInsert(base.SampleData, DynamicParameters));
+
+                        break;
+                    }
+                case CommandType.Delete:
+                    {
+                        commandResponse = Repository.Delete(Command.CreateDelete(base.SampleData, DynamicParameters));
+                        break;
+                    }
+            }
+
+            return commandResponse;
         }
     }
 }

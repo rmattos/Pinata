@@ -1,0 +1,136 @@
+﻿[
+    {
+        "Table": "TestPinata_Movie",
+        "Keys": [ "Id" ],
+        "Schema": [
+            {
+                "Column": "Id",
+                "Type": "guid"
+            },
+            {
+                "Column": "Name",
+                "Type": "string"
+            },
+            {
+                "Column": "CategoryId",
+                "Type": "int"
+            }
+        ],
+        "Rows": [
+            {
+                "Id": "c617dc49-6fff-4a2a-aff8-26774fe65290",
+                "Name": "movie_01",
+                "CategoryId": "5"
+            },
+            {
+                "Id": "8c6c89ae-66f0-456a-8b53-1b485138fdaa",
+                "Name": "movie_02",
+                "CategoryId": "6"
+            },
+            {
+                "Id": "9f55759b-bf68-4d3b-b62c-a0f923c52b1b",
+                "Name": "movie_03",
+                "CategoryId": "5"
+            }
+        ],
+        "FK_References": [
+            { "Table": "TestPinata_Category" }
+        ]
+    },
+    {
+        "Table": "TestPinata_MovieActor",
+        "Keys": [ "MovieId", "ActorId" ],
+        "Schema": [
+            {
+                "Column": "MovieId",
+                "Type": "guid"
+            },
+            {
+                "Column": "ActorId",
+                "Type": "guid"
+            }
+        ],
+        "Rows": [
+            {
+                "MovieId": "c617dc49-6fff-4a2a-aff8-26774fe65290",
+                "ActorId": "be295f7e-00b9-4809-9137-afac6e3b4a21"
+            },
+            {
+                "MovieId": "c617dc49-6fff-4a2a-aff8-26774fe65290",
+                "ActorId": "ef3fb00c-ee79-4548-b4a8-5304b5349096"
+            },
+            {
+                "MovieId": "8c6c89ae-66f0-456a-8b53-1b485138fdaa",
+                "ActorId": "87414f2f-d97e-4ccd-b200-088d70503dce"
+            },
+            {
+                "MovieId": "9f55759b-bf68-4d3b-b62c-a0f923c52b1b",
+                "ActorId": "5c3eaf48-f533-4a7a-99ba-d81151232c37"
+            }
+        ],
+        "FK_References": [
+            { "Table": "TestPinata_Movie" },
+            { "Table": "TestPinata_Actor" }
+        ]
+    },
+    {
+        "Table": "TestPinata_Actor",
+        "Keys": [ "Id" ],
+        "Schema": [
+            {
+                "Column": "Id",
+                "Type": "guid"
+            },
+            {
+                "Column": "Name",
+                "Type": "string"
+            }
+        ],
+        "Rows": [
+            {
+                "Id": "be295f7e-00b9-4809-9137-afac6e3b4a21",
+                "Name": "actor_01"
+            },
+            {
+                "Id": "ef3fb00c-ee79-4548-b4a8-5304b5349096",
+                "Name": "actor_02"
+            },
+            {
+                "Id": "87414f2f-d97e-4ccd-b200-088d70503dce",
+                "Name": "actor_03"
+            },
+            {
+                "Id": "5c3eaf48-f533-4a7a-99ba-d81151232c37",
+                "Name": "actor_04"
+            }
+        ],
+        "FK_References": [ ]
+    },
+    {
+        "Table": "TestPinata_Category",
+        "Keys": [ "Id" ],
+        "Schema": [
+            {
+                "Column": "Id",
+                "Type": "int"
+            },
+            {
+                "Column": "Name",
+                "Type": "string"
+            }
+        ],
+        "Rows": [
+            {
+                "Id": "5",
+                "Name": "Drama"
+            },
+            {
+                "Id": "6",
+                "Name": "Terror"
+            }
+        ],
+        "FK_References": [ ]
+    }
+]
+    
+

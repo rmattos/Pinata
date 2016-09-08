@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using Pinata.Command;
+﻿using Pinata.Command;
 using Pinata.Data;
+using System.Collections.Generic;
 
 namespace Pinata
 {
@@ -8,6 +8,8 @@ namespace Pinata
     {
         protected List<object> SampleData { get; set; }
         protected string[] SamplePath { get; set; }
+
+        protected IDictionary<string, string> DynamicParameters { get; set; }
 
         protected ICommand Command { get; set; }
         protected IPinataRepository Repository { get; set; }
@@ -20,6 +22,7 @@ namespace Pinata
             Provider = provider;
             Command = CommandFactory.Create(provider);
             Repository = RepositoryFactory.Create(connectionString, provider);
+            DynamicParameters = new Dictionary<string, string>();
         }
 
         public BasePinata(string connectionString, Provider.Type provider, params string[] samplePath)
@@ -28,6 +31,7 @@ namespace Pinata
             SamplePath = samplePath;
             Command = CommandFactory.Create(provider);
             Repository = RepositoryFactory.Create(connectionString, provider);
+            DynamicParameters = new Dictionary<string, string>();
         }
 
         protected void SetDataFiles(params string[] samplePath)
@@ -35,10 +39,17 @@ namespace Pinata
             SamplePath = samplePath;
         }
 
+        protected void SetDynamicParameters(IDictionary<string, string> parameters)
+        {
+            DynamicParameters = parameters;
+        }
+
         public abstract void Feed();
 
         public abstract void Feed(params string[] samplePath);
 
         public abstract bool Execute(CommandType commandType);
+
+        public abstract bool Execute(CommandType commandType, IDictionary<string, string> parameters);
     }
 }

@@ -1,0 +1,57 @@
+﻿[
+    {
+        "Collection": "TestPinata_User",
+        "Keys": [ "_id" ],
+        "Schema": [
+            {
+                "Column": "_id",
+                "Type": "objectId"
+            },
+            {
+                "Column": "Email",
+                "Type": "string"
+            },
+            {
+                "Column": "Age",
+                "Type": "int"
+            },
+            {
+                "Column": "Birthday",
+                "Type": "datetime"
+            },
+            {
+                "Column": "Interest",
+                "Type": "array"
+            },
+            {
+                "Column": "Address",
+                "Type": "document"
+            }
+        ],
+        "Rows": [
+            {
+                "_id": "user_id_01",
+                "Email": "user_01_email",
+                "Age": "user_01_age",
+                "Birthday": "user_01_birthday",
+                "Interest": "user_01_interest",
+                "Address": "user_01_address"
+            },
+            {
+                "_id": "user_id_02",
+                "Email": "user_02_email",
+                "Age": "user_02_age",
+                "Birthday": "user_02_birthday",
+                "Interest": "user_02_interest",
+                "Address": {
+                    "Street": "R. Maria Carolina, 495",
+                    "District": "Jardim Paulistano",
+                    "City": "São Paulo",
+                    "State": "SP"
+                }
+            }
+        ]
+    }
+]
+    
+
