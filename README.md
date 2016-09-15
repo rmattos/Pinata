@@ -5,28 +5,36 @@ Piñata
 
 Piñata is a simple and lightweight .NET library for managing database state during integration testing
 
-###How to install via NugGet
-
-To install Piñata, run the following command in the Package Manager Console
-
-PM> Install-Package Pinata
-
-###Compatibility
+## Compatibility
 
 .Net Framework 4.5 or higher
 
-###Database server supports:
+### Database server supports
 
 * MySQL (5.0 or higher)
-* MongoDB (2.6 and 3.0, 3.2 - *coming soon*)
+* MongoDB (2.6 or higher)
 * Microsoft SQL Server - *coming soon*
 * SQLLite - *coming soon*
 * PostgreSQL  - *coming soon*
 * Oracle - *coming soon*
 
-###Basic Usage
+## Getting Started
 
-####Create a JSON file with your data
+### How to install via NugGet
+
+To install Piñata, run the following command in the Package Manager Console
+
+PM> Install-Package Pinata
+
+### How it Works
+
+Given a JSON file having tables' schema and data you want to handle, Piñata organize a dataset and try to execute insert and delete command into a database.
+Actually it works with MySQL and MongoDB.
+
+
+### Data Schema
+
+JSON file should provide an array describing table's schema including primary and foreign keys, and the rows you want to handle. The following sample shows a MySQL JSON:
 
 ```json
 [
@@ -59,79 +67,33 @@ PM> Install-Package Pinata
         {
             "Id": "1cb9da05-38e5-11e6-8aa3-0003ff500b9d",
             "Name": "Ryan Reynolds"
+        },
+        {
+            "Id": "1cb9da05-38e5-11e6-8aa3-0003ff500b9e",
+            "Name": "dynamic_param"
         }
+
     ],
     "FK_References": [ ]
   }
 ]
 
 ```
-####Loading data into database
 
-Execute a delete command before, it will ensure that table will be clean before insert the data again
+Field           | Type      | Description                       | Observation
+---             | ---       | ---                               | ---
+Table           | string    | name of table inside database     |
+Keys            | array     | primary keys of table             | used as reference to execute delete operations
+Schema          | array     | type of data value to each column | types: int, long, short, byte, bool, string, char, guid, double, decimal, float, datetime, array, document, objectid
+Rows            | array     | data to insert on database        |
+FK_References   | array     | foreign key tables                |
 
-```csharp
-Pinata pinata = new Pinata(ConfigurationManager.ConnectionStrings["myConnectionString"].ToString(), Provider.Type.MySQL, "sample/data.json");
-
-pinata.Feed();
-
-pinata.Execute(CommandType.Delete);
-
-pinata.Execute(CommandType.Insert);
-```
-
-How to use
-======
-
-###JSON structure to SQL database
-
-```json
-[
-  {
-    "Table": "MyTable",
-    "Keys": [ "key1", "key2" ],
-    "Schema": [ 
-		{
-            "Column": "id",
-            "Type": "int"
-        },
-        {
-            "Column": "name",
-            "Type": "string"
-        }
-	],
-    "Rows": [
-		{
-			"id": "1",
-			"name": "Chris"
-		},
-		{
-			"id": "2",
-			"name": "Robert"
-		}
-	],
-    "FK_References": [
-		{ "Table": "table_reference_1" }
-	]
-  }
-]
-
-```
-
-Field | Type | Description | Observation
---- | --- | --- | ---
-Table | string | name of table inside database |
-Keys | array | primary keys of table | used as reference to execute delete operations
-Schema | array | type of data value to each column | types: int, long, short, byte, bool, string, char, guid, double, decimal, float, datetime, array, document, objectid
-Rows | array | data to insert on database |
-FK_References | array | foreign key tables |
-
-###JSON structure to MongoDB
+Piñata allows you to work with MongoDB. The structure is similar to MySQL except that you don't need foreign keys, as the following sample:
 
 ```json
 [
     {
-        "Collection": "MyCollection",
+        "Collection": "TestPinata_Movie",
         "Keys": [ "_id" ],
         "Schema": [
             {
@@ -139,79 +101,143 @@ FK_References | array | foreign key tables |
                 "Type": "objectId"
             },
             {
-                "Column": "Email",
+                "Column": "Name",
                 "Type": "string"
-            },
-            {
-                "Column": "Age",
-                "Type": "int"
             }
         ],
         "Rows": [
             {
                 "_id": "577aedd825e7695ec2a81145",
-                "Email": "test1@socialminer.com",
-                "Age": "28"
+                "Name": "Capitan America - Civil War"
             },
             {
                 "_id": "577aedfc25e7695ec2a81147",
-                "Email": "test2@socialminer.com",
-                "Age": "31",
-            }
+                "Name": "Avengers"
+            }            
         ]
     }
 ]
 
 ```
-Field | Type | Description | Observation
---- | --- | --- | ---
-Collection | string | name of collection inside database |
-Keys | array | unique identifier for collection | used as reference to execute delete operations
-Schema | array | type of data value to each column | types: int, long, short, byte, bool, string, char, guid, double, decimal, float, datetime, array, document, objectid
-Rows | array | data to insert on database |
 
-###Create a new Pinata object
+Field       | Type      | Description                           | Observation
+---         | ---       | ---                                   | ---
+collection  | string    | name of collection inside database    |
+Keys        | array     | unique identifier for collection      | used as reference to execute delete operations
+Schema      | array     | type of data value to each column     | types: int, long, short, byte, bool, string, char, guid, double, decimal, float, datetime, array, document, objectid
+Rows        | array     | data to insert on database            |
+
+
+### Hands On
+
+After create your data schema and install Piñata into your project, you can start an instance. 
+Work with MySQL requires a ProviderType, otherwise you just need provide your database address.
+The next step is having Piñata read the data schema file by the Feed method.
+
+ ```csharp
+
+Pinata pinata = new Pinata(ConfigurationManager.ConnectionStrings["myConnectionString"].ToString(), Provider.Type.MySQL);
+
+pinata.Feed("sample/data.json");
+
+```
+
+Is recommended to execute a delete command before the insert to ensure data coherence.
 
 ```csharp
-Pinata pinata = new Pinata(ConfigurationManager.ConnectionStrings["myConnectionString"].ToString(), Provider.Type.MySQL, "data.json");
+
+pinata.Execute(CommandType.Delete);
+
+pinata.Execute(CommandType.Insert);
+
 ```
-####Parameters
 
-Parameter | Type | Description
---- | --- | ---
-ConnectionString | string
-Provider | enum | values: Provider.Type.MySQL , Provider.Type.MongoDB
-SamplePath | array | array of json files, this is optional you can load json files direct from feed method as well.
+Another way to load data is provide a JSON struct passing variables instead values.
+You'll keep the same data schema but the Execute command must have a dictionary with the
+corresponding parameters.
 
-###Load data into Pinata
 
 ```csharp
-pinata.Feed();
+
+private IDictionary<string, string> parameters = new Dictionary<string, string>();;
+
+parameters.Add("dynamic_param", "Lights Out");
+
+pinata.Execute(CommandType.Insert, parameters);
+
 ```
+
+## Documentation
+
+### Pinata Class
+
+#### new Pinata(options)
+
+```csharp
+
+Pinata pinata = new Pinata(ConfigurationManager.ConnectionStrings["myConnectionString"].ToString(), Provider.Type.MySQL);
+
+```
+
 or
 
 ```csharp
-pinata.Feed("data1.json", "data2.json");
+
+Pinata pinata = new Pinata(ConfigurationManager.ConnectionStrings["myConnectionString"].ToString(), Provider.Type.MySQL, "data1.json", "data2.json");
+
 ```
 
-####Parameters
+Parameter           | Type      | optional  | Description
+---                 | ---       | ---       | ---
+ConnectionString    | string    | false
+Provider            | enum      | false     | values: Provider.Type.MySQL , Provider.Type.MongoDB
+SamplePath          | array     | true      | array of json files, this is optional you can load json files direct from feed method as well.
 
-Parameter | Type | Description
---- | --- | ---
-SamplePath | array | array of json files, you can load json files direct from Feed method
 
-###Execute a command into database
+#### Feed(options)
 
 ```csharp
-pinata.Execute(CommandType.Insert);
+
+pinata.Feed();
+
 ```
-####Parameters
 
-Parameter | Type | Description
---- | --- | ---
-CommandType | enum | type of command to execute. values: CommandType.Insert, CommandType.Delete
+or
 
-###Supported data types at schema
+```csharp
+
+pinata.Feed("data1.json");
+
+```
+
+Parameter           | Type      | optional  | Description
+---                 | ---       | ---       | ---
+SamplePath          | array     | true      | array of json files, this is optional you can load json files direct from Piñata constructor as well.
+
+
+#### Execute(options)
+
+```csharp
+
+pinata.Execute(CommandType.Insert);
+
+```
+
+or
+
+```csharp
+
+pinata.Execute(CommandType.Insert, Parameters);
+
+```
+
+Parameter           | Type                          | optional  | Description
+---                 | ---                           | ---       | ---
+CommandType         | enum                          | false     | type of command to execute. values: CommandType.Insert, CommandType.Delete.
+Parameters          | dictionary<string></string>   | true      | dictionary having variable name and value
+
+
+### Supported data types at schema
 
 * Int 
 * Long 
@@ -229,8 +255,10 @@ CommandType | enum | type of command to execute. values: CommandType.Insert, Com
 * Document
 * ObjectId
 
-##Other JSON data examples
-####JSON example of tables with relationship to SQL database
+
+## Examples
+
+### JSON example of tables with relationship to SQL database
 
 ```json
 [
@@ -377,7 +405,7 @@ CommandType | enum | type of command to execute. values: CommandType.Insert, Com
 ]
  
 ```
-####JSON example of collection with complex documents to MongoDB
+### JSON example of collection with complex documents to MongoDB
 
 ```json
 [
@@ -443,13 +471,15 @@ CommandType | enum | type of command to execute. values: CommandType.Insert, Com
     
 ```
 
-##OSS Libraries used
+
+## OSS Libraries used
 
 * [Jil](https://github.com/kevin-montrose/Jil)
 * [Dapper] (https://github.com/StackExchange/dapper-dot-net)
 * [Mongo C# Driver] (https://github.com/mongodb/mongo-csharp-driver)
 * [MySQL .NET Driver] (https://github.com/mysql/mysql-connector-net)
 
-##License
+
+## License
 
 This software is licensed in [MIT License (MIT)](https://github.com/rmattos/Pinata/blob/master/LICENSE)
