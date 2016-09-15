@@ -3,7 +3,8 @@
 Piñata
 ======
 
-Piñata is a simple and lightweight .NET library for managing database state during integration testing
+Piñata is a simple and lightweight .NET library for managing database state during integration testing.
+
 
 ## Compatibility
 
@@ -17,6 +18,7 @@ Piñata is a simple and lightweight .NET library for managing database state dur
 * SQLLite - *coming soon*
 * PostgreSQL  - *coming soon*
 * Oracle - *coming soon*
+
 
 ## Getting Started
 
@@ -80,6 +82,7 @@ JSON file should provide an array describing table's schema including primary an
 
 ```
 
+
 Field           | Type      | Description                       | Observation
 ---             | ---       | ---                               | ---
 Table           | string    | name of table inside database     |
@@ -119,6 +122,7 @@ Piñata allows you to work with MongoDB. The structure is similar to MySQL excep
 ]
 
 ```
+
 
 Field       | Type      | Description                           | Observation
 ---         | ---       | ---                                   | ---
@@ -166,6 +170,7 @@ parameters.Add("dynamic_param", "Lights Out");
 pinata.Execute(CommandType.Insert, parameters);
 
 ```
+
 
 ## Documentation
 
