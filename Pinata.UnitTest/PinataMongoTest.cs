@@ -57,7 +57,7 @@ namespace Piñata.UnitTest
                     parameters.Add("user_id_02", "57cf3ad71c61d08a18c832c3");
 
                     parameters.Add("user_01_email", "second_user@anotheremail.com");
-                    parameters.Add("user_02_email", "firts_user@email.com");
+                    parameters.Add("user_02_email", "first_user@email.com");
 
                     parameters.Add("user_01_age", "36");
                     parameters.Add("user_02_age", "66");

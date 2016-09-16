@@ -1,8 +1,7 @@
-﻿using System;
-using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.Options;
+﻿using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using Pinata.Data;
+using System;
 
 namespace Pinata.Command
 {
@@ -18,7 +17,7 @@ namespace Pinata.Command
             {
                 try
                 {
-                    BsonSerializer.RegisterSerializer(typeof(DateTime), new DateTimeSerializer(DateTimeSerializationOptions.LocalInstance));
+                    BsonSerializer.RegisterSerializer(typeof(DateTime), new DateTimeSerializer(DateTimeKind.Local));
                 }
                 catch (Exception ex)
                 {

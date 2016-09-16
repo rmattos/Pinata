@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text.RegularExpressions;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace Pinata.Data.MongoDB
 {
@@ -136,7 +136,7 @@ namespace Pinata.Data.MongoDB
 
         public virtual bool Create(T document)
         {
-            return GetCollection(CollectionName).Save(document, new MongoInsertOptions { WriteConcern = WriteConcern.Acknowledged }).Ok;
+            return !GetCollection(CollectionName).Save(document, new MongoInsertOptions { WriteConcern = WriteConcern.Acknowledged }).HasLastErrorMessage;
         }
 
         public virtual void CreateBatch(IList<T> listDocument)
@@ -146,27 +146,27 @@ namespace Pinata.Data.MongoDB
 
         public virtual bool Delete(Guid id)
         {
-            return GetCollection(CollectionName).Remove(Query.EQ("_id", new BsonBinaryData(id)), RemoveFlags.None, WriteConcern.Acknowledged).Ok;
+            return !GetCollection(CollectionName).Remove(Query.EQ("_id", new BsonBinaryData(id)), RemoveFlags.None, WriteConcern.Acknowledged).HasLastErrorMessage;
         }
 
         public virtual bool Delete(IMongoQuery query)
         {
-            return GetCollection(CollectionName).Remove(query, RemoveFlags.None, WriteConcern.Acknowledged).Ok;
+            return !GetCollection(CollectionName).Remove(query, RemoveFlags.None, WriteConcern.Acknowledged).HasLastErrorMessage;
         }
 
         public virtual bool Update(IMongoQuery query, IMongoUpdate update)
         {
-            return GetCollection(CollectionName).Update(query, update).Ok;
+            return !GetCollection(CollectionName).Update(query, update).HasLastErrorMessage;
         }
 
         public virtual bool Update(Guid id, IMongoUpdate update, UpdateFlags updateFlag = UpdateFlags.None)
         {
             if (updateFlag == UpdateFlags.None)
             {
-                return GetCollection(CollectionName).Update(Query.EQ("_id", new BsonBinaryData(id)), update).Ok;
+                return !GetCollection(CollectionName).Update(Query.EQ("_id", new BsonBinaryData(id)), update).HasLastErrorMessage;
             }
 
-            return GetCollection(CollectionName).Update(Query.EQ("_id", new BsonBinaryData(id)), update, updateFlag).Ok;
+            return !GetCollection(CollectionName).Update(Query.EQ("_id", new BsonBinaryData(id)), update, updateFlag).HasLastErrorMessage;
         }
 
         public virtual IQueryable<T> AsQueryable()
