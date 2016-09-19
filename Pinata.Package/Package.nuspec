@@ -22,7 +22,7 @@
     <copyright>Copyright  2016</copyright>
     <dependencies>
       <dependency id="Jil" version="2.14.3" />
-      <dependency id="mongocsharpdriver" version="[1.10.0]" />
+      <dependency id="mongocsharpdriver" version="[2.2.0]" />
       <dependency id="Dapper" version="1.42" />
       <dependency id="DapperExtensions" version="1.4.4" />
       <dependency id="MySql.Data" version="6.9.8" />
