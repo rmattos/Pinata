@@ -1,4 +1,4 @@
-![alt text](https://img.shields.io/appveyor/ci/gruntjs/grunt/master.svg "build status") ![alt text](https://img.shields.io/badge/coverage-1%25-red.svg "code coverage status") ![alt text](https://img.shields.io/badge/nuget-v0.12.0-blue.svg "version")
+![alt text](https://img.shields.io/appveyor/ci/gruntjs/grunt/master.svg "build status") ![alt text](https://img.shields.io/badge/nuget-v0.13.0-blue.svg "version")
 
 Piñata
 ======
@@ -31,13 +31,13 @@ PM> Install-Package Pinata
 
 ### How it Works
 
-Given a JSON file having tables' schema and data you want to handle, Piñata organize a dataset and try to execute insert and delete command into a database.
+Given a JSON file having tables schema and data you want to handle, Piñata organize a dataset and try to execute insert and delete command into a database.
 Actually it works with MySQL and MongoDB.
 
 
 ### Data Schema
 
-JSON file should provide an array describing table's schema including primary and foreign keys, and the rows you want to handle. The following sample shows a MySQL JSON:
+JSON file should provide an array describing table's schema including primary and foreign keys, and the rows you want to handle. The following sample shows a JSON data for MySQL database:
 
 ```json
 [
@@ -164,7 +164,7 @@ corresponding parameters.
 
 ```csharp
 
-private IDictionary<string, string> parameters = new Dictionary<string, string>();;
+private IDictionary<string, string> parameters = new Dictionary<string, string>();
 
 parameters.Add("dynamic_param", "Lights Out");
 
